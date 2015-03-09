@@ -1,20 +1,41 @@
-/* Site color palette 
-#1D2F3E Blue black
-#152737 Dark blue
-#0F9FB4 Ocean blue
-#0FB493 Turquoise
-#C9E1C1 gray green
+/*font-family: 'Vollkorn', serif;
+ *font-family: 'Open Sans', sans-serif;
+ */
+
+ /*
+
+#E44424 red
+#67BCDB blue
+#A2AB58 navy green
+#FFFFFF
 */
-body {
-    background-color:#1D2F3E;
+
+
+body{
+    background-color: #FFFFFF;
 }
-h1 {
-    font-family: Impact;
-    font-size: 3em;
-    color: #0FB493;
+
+
+.site_header {
+    background-color: #E44424;
+    width: auto;
+    height: auto;
+    line-height: auto;
+    text-align: center;
+    font-family: 'Vollkorn', serif;
+    font-size: 30px;
+    color:#FFFFFF;
+    border-radius: 10px;
 }
-p {
-    font-family: Arial;
-    font-size: 1em;
-    color: #C9E1C1;
+
+#about_me {
+    width: auto;
+    border: 2 px solid black;
+    height: 300px;
+    line-height: 300px;
+    background-color: #67BCDB;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    color:white;
+    font-size: 20px;
 }
