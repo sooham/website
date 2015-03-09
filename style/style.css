@@ -1,13 +1,20 @@
+/* Site color palette 
+#1D2F3E Blue black
+#152737 Dark blue
+#0F9FB4 Ocean blue
+#0FB493 Turquoise
+#C9E1C1 gray green
+*/
 body {
-    color: orange;
+    background-color:#1D2F3E;
 }
 h1 {
     font-family: Impact;
     font-size: 3em;
-    color: blue;
+    color: #0FB493;
 }
 p {
     font-family: Arial;
     font-size: 1em;
-    color: blue;
+    color: #C9E1C1;
 }
