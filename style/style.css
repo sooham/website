@@ -1,5 +1,6 @@
 #header {
-    background: url(/img/signature@1x.png) no-repeat center center;
+    background: url(/img/signature@1x.png) no-repeat center center; 
+    background-size: 50% 50%;
     position: fixed;
     height: 150px;
     width: 100%;
@@ -52,7 +53,6 @@ body {
 
 #navbar li a:hover {
     color:black;
-    border-bottom: 1px grey solid;
 }
 
 #navbar li {
