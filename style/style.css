@@ -18,16 +18,17 @@
     height:1000px;
     text-align:center;
     padding:3em;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
 }
 
-#content > * {
+#content *{
     margin: auto;
     font-family: Varela Round;
 }
 
 
 body{
-    background-color: #D1D1F0;
     background-image: url('./img/swirl_pattern');
     margin:0;
 }
