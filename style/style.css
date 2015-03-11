@@ -3,10 +3,11 @@
     position: fixed;
     height: 150px;
     width: 100%;
-    z-index: -1;
+    z-index: -10;
+    text-align: center;
 }
 #header * {
-    z-index: -1;
+    z-index: -10;
 }
 #content {
     width: 70%;
