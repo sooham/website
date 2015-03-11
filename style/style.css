@@ -9,23 +9,53 @@
 #header * {
     z-index: -10;
 }
+
 #content {
     width: 70%;
     position: relative;
     top: 150px;
     margin: auto;
     background: white;
-    height: 1000px;
+    height: 800px;
     text-align: center;
-    padding: 3em;
     border-top: 1px solid grey;
     border-bottom: 1px solid grey;
 }
 #content * {
     margin: auto;
-    font-family: Varela Round;
+    font-family: Varela Round, Helvetica;
+    font-size: 16px;
 }
 body {
     background-image: url('./img/swirl_pattern');
     margin: 0;
+}
+
+#navbar {
+    position:relative;
+    margin:0;
+    padding:0;
+    width: 100%;
+    height: auto;
+    margin-bottom: 5%;
+}
+
+
+#navbar li, a{
+    height:auto;
+    display: inline;
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+    text-decoration: none;
+    color:grey;
+}
+
+#navbar li a:hover {
+    color:black;
+    border-bottom: 1px grey solid;
+}
+
+#navbar li {
+    margin-left: 10%;
+    margin-right: 10%;
 }
