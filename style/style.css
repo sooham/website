@@ -1,41 +1,14 @@
-/*font-family: 'Vollkorn', serif;
- *font-family: 'Open Sans', sans-serif;
- */
-
- /*
-
-#E44424 red
-#67BCDB blue
-#A2AB58 navy green
-#FFFFFF
-*/
-
-
-body{
-    background-color: #FFFFFF;
+#header {
+    background:url(/img/signature@1x.png) no-repeat center center;
+    position: fixed;
+    height:300px;
+    width:100%;
+    z-index: -10;
 }
 
-
-.site_header {
-    background-color: #E44424;
-    width: auto;
-    height: auto;
-    line-height: auto;
-    text-align: center;
-    font-family: 'Vollkorn', serif;
-    font-size: 30px;
-    color:#FFFFFF;
-    border-radius: 10px;
-}
-
-#about_me {
-    width: auto;
-    border: 2 px solid black;
-    height: 300px;
-    line-height: 300px;
-    background-color: #67BCDB;
-    font-family: 'Open Sans', sans-serif;
-    text-align: center;
-    color:white;
-    font-size: 20px;
+#content {
+    width:100%;
+    position:relative;
+    top: 300px;
+    background:white;
 }
