@@ -15,4 +15,10 @@
     top: 150px;
     background:white;
     height:1500px;
+    text-align: center;
+    margin: auto;
+}
+
+body{
+    margin:0;
 }
