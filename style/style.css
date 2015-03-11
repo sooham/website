@@ -3,6 +3,7 @@
     position: fixed;
     height:150px;
     width:100%;
+    z-index: -1;
 }
 
 #content {
