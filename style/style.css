@@ -10,13 +10,22 @@
 }
 
 #content {
-    width:100%;
+    width:80%;
     position:relative;
     top: 150px;
+    margin:auto;
     background:white;
     height:1500px;
-    text-align: center;
+    text-align:center;
+    padding:3em;
+}
+
+#content > * {
     margin: auto;
+}
+
+* {
+    border: 1px solid black;
 }
 
 body{
