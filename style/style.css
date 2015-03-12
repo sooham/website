@@ -10,7 +10,7 @@ body {
     position: fixed;
     height: 150px;
     width: 100%;
-    z-index: -10;
+    z-index: -1;
     text-align: center;
 }
 
@@ -44,6 +44,7 @@ body {
     width:45%;
     border-top: 1px solid grey;
     border-bottom: 1px solid grey;
+    background-color: white;
 }
 
 
