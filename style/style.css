@@ -1,60 +1,75 @@
-#header {
-    background: url(/img/signature@1x.png) no-repeat center center; 
+body {
+    margin: 0;
+    background: white;
+    font-family: Verela Round, Helvetica;
+    font-size: 16px;
+}
+
+#banner {
+    background: url(/img/signature@1x.png) no-repeat center center;
     position: fixed;
     height: 150px;
     width: 100%;
-    z-index: -10;
+    z-index: -1;
     text-align: center;
 }
-#header * {
-    z-index: -10;
+
+#social {
+    background-color: white;
+    width: auto;
+    height: 30%;
+    border-right: 1px grey solid;
+    border-left: none;
+    position:fixed;
+    top:50%;
+    margin:0;
+    text-align: center;
+    z-index: 1;
 }
 
-#content {
-    width: 70%;
+#social img{
+    top: 15%;
+    position: relative;
+    width: 45px;
+    height: 45px;
+    margin: 5%;
+    padding: 0;
+}
+
+.content {
     position: relative;
     top: 150px;
     margin: auto;
-    background: white;
-    height: 800px;
-    text-align: center;
+    height: auto;
+    width:45%;
     border-top: 1px solid grey;
     border-bottom: 1px solid grey;
 }
-#content * {
-    margin: auto;
-    font-family: Varela Round, Helvetica;
-    font-size: 16px;
-}
-body {
-    background-image: url('./img/swirl_pattern');
-    margin: 0;
-}
+
 
 #navbar {
+    text-align: center;
     position:relative;
-    margin:0;
+    margin:1% 0 5% 0;
     padding:0;
-    width: 100%;
-    height: auto;
-    margin-bottom: 5%;
-}
-
-
-#navbar li, a{
+    width:100%;
     height:auto;
-    display: inline;
-    font-size: 18px;
-    font-family: 'Open Sans', sans-serif;
-    text-decoration: none;
-    color:grey;
-}
-
-#navbar li a:hover {
-    color:black;
 }
 
 #navbar li {
-    margin-left: 10%;
-    margin-right: 10%;
+    display: inline;
+    margin:auto;
+    margin: 4%;
 }
+
+#navbar li a, a {
+    color: grey;
+    font-family: 'Open Sans', Helvetica;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+#navbar li a:hover, a:hover {
+    color:black;
+}
+
