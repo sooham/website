@@ -24,6 +24,7 @@ body {
     text-align: center;
     z-index: 1;
 }
+
 #social img {
     top: 15%;
     position: relative;
@@ -49,6 +50,7 @@ body {
     width: 100%;
     height: auto;
 }
+
 #navbar li {
     display: inline;
     margin: auto;
