@@ -1,5 +1,7 @@
 # The directory where jekyll will read files
 source: .
+# destination
+destination: _site
 # exclude the following files in the liquid transformation rendering
 exclude: [.gitingore, Gemfile, Gemfile.lock, README.md, robots.txt]
 # publish posts with a future date
