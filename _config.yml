@@ -1,0 +1,17 @@
+# The directory where jekyll will read files
+source: .
+# directory where jekyll will write files
+destination: _site
+# exclude the following files in the liquid transformation rendering
+exclude: [.gitingore, Gemfile, Gemfile.lock, README.md, robots.txt, index.html]
+# publish posts with a future date
+future: True
+# set the default values for posts
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+      type: "posts"
+    values:
+      layout: "default"
+      author: "Sooham Rafiz"
