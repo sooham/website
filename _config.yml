@@ -1,7 +1,7 @@
 # The directory where jekyll will read files
 source: .
 # exclude the following files in the liquid transformation rendering
-exclude: [.gitingore, Gemfile, Gemfile.lock, README.md, robots.txt, index.html]
+exclude: [.gitingore, Gemfile, Gemfile.lock, README.md, robots.txt]
 # publish posts with a future date
 future: True
 # set the default values for posts
