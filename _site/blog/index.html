@@ -1,0 +1,59 @@
+--- ---
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <title>Sooham's Blog</title>
+    <link type="text/css" rel="stylesheet" href="../stylesheets/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <!-- Keep the site banner and navbar the same -->
+
+    <div id="banner"></div>
+    <div id="social">
+        <a href="https://github.com/sooham">
+            <img src="../img/github@2x.png">
+        </a>
+        <a href="mailto:sooham.rafiz@mail.utoronto.ca">
+            <img src="../img/mail@2x.png">
+        </a>
+    </div>
+
+    <div class="content">
+
+        <ul id="navbar">
+            <li><a href="../index.html/#about_me">About Me</a>
+            </li>
+            <li><a href="">Blog</a>
+            </li>
+            <li><a href="../index.html/#projects">Projects</a>
+            </li>
+            <li><a href="../index.html/#checklist">Checklist</a>
+            </li>
+        </ul>
+
+        <!-- Liquid template for blog posts begins here -->
+        <h1 id="blog_header">My Blog</h1> {% for post in site.posts %}
+        <div class="blog_entry">
+            <h3>{{post.title}}<h3>
+            <p>{{ post.content }}</p>
+            <ul class="post_metadata">
+                <li>{{post.author}}</li>
+                {% for tag in post.tags %}
+                    <li>{{ tag }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+        <div class="footer">
+            <p>Site made by Sooham Rafiz c.2015.</p>
+        </div>
+    </div>
+
+</body>
+
+</html>
