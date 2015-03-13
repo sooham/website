@@ -1,3 +1,4 @@
+exclude: [.gitignore, _config.yml, Gemfile, Gemfile.lock, README.md, robots.txt, index.html]
 # set the default values for posts
 defaults:
   -
