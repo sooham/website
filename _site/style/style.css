@@ -1,0 +1,98 @@
+body {
+    margin: 0;
+    background: white;
+    font-family: Verela Round, Helvetica;
+    font-size: 16px;
+    color: #404040;
+}
+#banner {
+    background: url(/img/signature@1x.png) no-repeat center center;
+    position: fixed;
+    height: 150px;
+    width: 100%;
+    z-index: -1;
+    text-align: center;
+}
+#social {
+    background-color: white;
+    width: auto;
+    height: 30%;
+    border-left: none;
+    position: fixed;
+    top: 50%;
+    margin: 0;
+    text-align: center;
+    z-index: 1;
+}
+#social img {
+    top: 15%;
+    position: relative;
+    width: 45px;
+    height: 45px;
+    margin: 5%;
+    padding: 0;
+}
+.content {
+    position: relative;
+    top: 150px;
+    margin: auto;
+    height: auto;
+    width: 45%;
+    border-top: 1px solid #888888;
+    background-color: white;
+}
+#navbar {
+    text-align: center;
+    position: relative;
+    margin: 1% 0 5% 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+}
+#navbar li {
+    display: inline;
+    margin: auto;
+    margin: 4%;
+}
+#navbar li a, a {
+    color: #888888;
+    font-family: 'Open Sans', Helvetica;
+    font-size: 16px;
+    text-decoration: none;
+}
+#navbar li a:hover, a:hover {
+    color: black;
+}
+.content h3 {
+    font-family: 'Open Sans', Helvetica;
+    font-size: 30px;
+    color: #888888;
+}
+.content h4 {
+    font-family: 'Open Sans', Helvetica;
+    color: #888888;
+    margin-left: 10%;
+}
+.content p {
+    margin-left: 10%;
+}
+.list p {
+    margin-left: 0;
+    text-align: center;
+    padding: 3% 0 3% 0;
+    background-color: #b3b3b3;
+}
+.list p.complete {
+    background-color: #DE8642;
+    color: #E0FFFF;
+}
+.footer {
+    margin-top: 10%;
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+    text-align: right;
+    font-size: 9px;
+    font-family: 'Open Sans', Helvetica;
+}
