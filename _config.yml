@@ -1,9 +1,0 @@
-exclude: [.gitignore, _config.yml, Gemfile, Gemfile.lock, README.md, robots.txt]
-# set the default values for posts
-defaults:
-  -
-    scope:
-      path: "" # an empty string here means all files in the project
-      type: "posts"
-    values:
-      author: "Sooham Rafiz"
