@@ -19,7 +19,7 @@
             <li><a href="/blog">Blog</a></li>
             <li><a href="http://www.github.com/sooham">Github</a></li>
             <li><a href="/projects">Projects</a>
-            <li><a href="/resume.pdf">resume</a></li>
+            <li><a href="/resume.pdf">Resume</a></li>
         </ul>
     </nav>
 
@@ -28,12 +28,13 @@
          hidden through CSS -->
         <article id="post-template" class="post">
             <header class="post-header">
-                <h2>{{title}}</h2>
+            <a href="/blog/{{}}"><h2>{{title}}</h2></a>
             </header>
             <section class="post-content">
                 {{content}}
             </section>
         </article>
     </main>
+    <script src="./scripts/index.js">
 </body>
 
