@@ -2,7 +2,7 @@ a {
     text-decoration: none;
 }
 
-.site-head {
+#site-head {
     font-size: 0.8em;
     font-family: Helvetica, arial, sans-serif;
     position: fixed;
@@ -10,50 +10,51 @@ a {
     left: 4%;
 }
 
-.site-head h1 {
+#site-head h1 {
     margin: 0;
 }
 
-.site-head a {
+#site-head a {
     color: #131516;
 }
 
-.site-head span {
-    color: #F26D21;
-}
-
-.navbar {
+#navbar {
     position: fixed;
     top: 7em;
     left: 4%;
 }
-.navbar ul {
+
+#navbar ul {
     padding: 0;
     margin: 0;
 }
 
-.navbar li {
+#navbar li {
     font-size: 1.3em; 
     font-family: Helvetica, arial, sans-serif;
     display: block;
     line-height: 2em;
 }
 
-.navbar a {
+#navbar a {
     color: #1496BB;
 }
 
-.navbar a:hover {
+#navbar a:hover {
     color: #131516;
 }
 
 
-.content {
+#content {
     position: relative;
     top: 6em;
     left: 35%;
     min-width:40em;
     width:58%;
+}
+
+#post-template {
+    display: none;
 }
 
 .post {
