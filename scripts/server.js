@@ -1,3 +1,4 @@
+// Todo: use better HTTP response codes
 var Router = require("./router");
 var http = require("http");
 var querystring = require("querystring");
