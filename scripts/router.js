@@ -27,6 +27,7 @@ Router.prototype.add = function(method, pattern, handler) {
  */
 Router.prototype.resolve = function(request, response) {
     var path = url.parse(request.url).pathname;
+    console.error("Routing URL: " + path);
 
     var isRouted = this.routes.some(function(route) {
         // TODO: Do I need to make this deal with POST requests to /admin?
@@ -34,6 +35,8 @@ Router.prototype.resolve = function(request, response) {
         if (match && route.method === request.method) {
             // call route.handler with request and all captured groups
             var args = match.slice(1).map(decodeURIComponent);
+            console.error("Routed match with groups found: " + args.toString());
+            console.error("Calling handler function " + route.handler.name);
             route.handler.apply(null, [request, response].concat(args));
             return true;
         }
