@@ -3,14 +3,14 @@
     <meta charset="utf-8">
     <title>Sooham_Rafiz</title>
     <meta name="description" content="Sooham Rafiz's personal website." />
-    <link rel="stylesheet" type="text/css" href="./assets/index.css" />
-    <link rel="stylesheet" type="text/css" href="./assets/fonts/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="./style/index.css" />
+    <link rel="stylesheet" type="text/css" href="./style/fonts/fonts.css" />
 </head>
 <body>
     <header id="site-head">
         <h1>
             <!-- site-head-state span tag and style is filled in by javascript -->
-            <a href="/blog">Sooham_Rafiz.<span class="site-head-state"></span></a>
+            <a href="/">Sooham_Rafiz.<span class="site-head-state">{{state}}</span></a>
         </h1>
     </header>
 
@@ -28,13 +28,13 @@
          hidden through CSS -->
         <article id="post-template" class="post">
             <header class="post-header">
-            <a href="/blog/{{}}"><h2>{{title}}</h2></a>
+            <h2><a href="/blog/{{encoded_title}}">{{title}}</a></h2>
             </header>
             <section class="post-content">
                 {{content}}
             </section>
         </article>
     </main>
-    <script src="./scripts/index.js">
+    <script src="./scripts/index.js" async></script>
 </body>
 
