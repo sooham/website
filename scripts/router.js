@@ -1,7 +1,7 @@
 var url = require("url");
 
 // A simple URL router
-var Router = function() {
+var Router = module.exports = function() {
     this.routes = [];
 }
 
@@ -42,8 +42,5 @@ Router.prototype.resolve = function(request, response) {
         }
         return false;
     });
-
     return isRouted;
 }
-
-module.exports = new Router();

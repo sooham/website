@@ -1,9 +1,15 @@
 // Todo: use better HTTP response codes
-var Router = require("./router");
 var http = require("http");
 var querystring = require("querystring");
-var tls = require("tls"); // do something with the TLS
+var tls = require("tls"); // TODO: (make HTTPS) 
 var url = require("url");
+
+var Router = require("./router");
+var Database = require("./database");
+
+// create instances of local modules
+var router = new Router();
+var db = new Database();
 
 /* Respond with statusCode, data with type and headers
  *
@@ -53,7 +59,7 @@ function getKeyValuePairsFromStream(request, callback) {
         body += data;
 
         // Too much POSTed data
-        if (body.length > 1e6)      // TODO: Why?
+        if (body.length > 1e6)      // TODO: Why? (also try to prevent execssive RAM usage pls)
             request.connection.destroy();
     });
 
@@ -66,25 +72,26 @@ function getKeyValuePairsFromStream(request, callback) {
     });
 }
 
-// HTTP schema
-// GET / redirects to /blog (for now)
-// GET /blog return the JSON objects for the blog
-// POST /blog posts a new blog post to blog
-// GET /projects return the JSON objects for the project
-// GET /admin return the admin login page
-// POST /admin username and password to login
+// setup the database
+db.connection.on("error", handler); // TODO: replace with database error handler
+db.once("open", function() {
+    console.error("database is ready and operational");
+    // TODO: some more stuff
+});
 
-Router.add("GET", /^\/$/, rootHandler);
-Router.add("GET", /^\/admin\/?$/, getAdminHandler);
-Router.add("GET", /^\/blog\/([^\/]+)\/?$/, getBlogPostHandler);
-Router.add("GET", /^\/blog\/?$/, getBlogPostsHandler);
-Router.add("GET", /^\/projects\/?$/, projectsHandler);
-Router.add("POST", /^\/admin\/?$/, loginHandler);
-Router.add("POST", /^\/blog\/?$/, postBlogPostHandler);
+// add routes for different URLs
+router.add("GET", /^\/$/, rootHandler);
+router.add("GET", /^\/admin\/?$/, getAdminHandler);
+router.add("GET", /^\/blog\/([^\/]+)\/?$/, getBlogPostHandler);
+router.add("GET", /^\/blog\/?$/, getBlogPostsHandler);
+router.add("GET", /^\/projects\/?$/, projectsHandler);
+router.add("POST", /^\/admin\/?$/, loginHandler);
+router.add("POST", /^\/blog\/?$/, postBlogPostHandler);
 
-var db = Object.create(null); // TODO: delete and replace with mongo
-db.blogPosts = Object.create(null);
-db.projectPosts = Object.create(null);
+// code to save a BlogPost
+post.save(function (error, post) {
+    // deal with errors here
+})
 
 /* Handles the / */
 function rootHandler(request, response) {
@@ -95,56 +102,80 @@ function rootHandler(request, response) {
 /* Handles the GET /blog */
 function getBlogPostsHandler(request, response) {
     // get JSON posts from the database
-    var blogPosts = db.blogPosts;
-    respondAsJSON(response, 200, blogPosts);
+    db.findAllPosts(function (error, data) {
+        if (error)
+            respond(response, 500, http.STATUS_CODES[500], "text/plain"); // TODO: double check
+        else if (data.length)
+            respondAsJSON(response, 200, data);
+        else
+            respond(response, 200, "You haven't created any posts yet.", "text/plain");
+    });
 }
 
 /* Handles the get /blog/post-name */
 function getBlogPostHandler(request, response) {
-    // get JSON posts from the database
+    // get post from the database
     var postTitle = arguments[2];
 
-    var blogPost = db.blogPosts[postTitle];
-    if (blogPost)
-        respondAsJSON(response, 200, blogPost);
-    else
-        respond(response, 404, http.STATUS_CODES[404], "text/plain");
+    db.findPostWithTitle(postTitle, function (error, data) {
+        if (error)
+            respond(response, 500, http.STATUS_CODES[500], "text/plain"); // TODO: double check
+        else if (data.length)
+            respondAsJSON(response, 200, data);
+        else
+            respond(response, 404, http.STATUS_CODES[404], "text/plain");
+    });
 }
 
+// TODO: needs better variable names
+// TODO: only allow logged in people to make Posts
 function postBlogPostHandler(request, response) {
     // Get the POST body
-    getKeyValuePairsFromStream(request, function (error, data) {
+    getKeyValuePairsFromStream(request, function (error, newPost) {
         if (error) {
-            respond(response, 404, http.STATUS_CODE[404], "text/plain");
+            respond(response, 500, http.STATUS_CODES[500], "text/plain"); // TODO
         } else {
-            console.error("KV pairs from POST request:\n" + JSON.stringify(data));
-            if (data.title in db.blogPosts) {
-                // Cannot have post with this title brah
-                console.error("post already exists!");
-                respond(response, 400, "You already have this post", "text/plain");
-            } else {
-                db.blogPosts[data.title] = data;
-                console.error("db contains new blog post: " + (data.title in db.blogPosts));
-                respond(response, 200, "created", "text/plain");
-            }
+            console.error("KV pairs from POST request:\n" + JSON.stringify(newPost));
+            // check if post with title already exists
+            db.blog.find({title: newPost.title}, function (error, data) {
+                if (error) {
+                    respond(response, 500, http.STATUS_CODES[500], "text/plain"); // TODO
+                } else if (data.length) {
+                    console.error("blog post with title already exists");
+                    respond(response, 500, "this blog post title already exists", "text/plain");
+                } else {
+                    console.error("saving the blog post");
+                    db.savePost(newPost, function (err) {
+                        if (error)
+                            respond(response, 500, http.STATUS_CODES[500], "text/plain");
+                        else
+                            respond(response, 200, "created", "text/plain");
+                    });
+                }
+
+            });
         }
     });
 }
 
 /* Handles the /projects */
 function projectsHandler(request, response) {
-    var projectPosts = db.projectPosts;
-    respondAsJSON(response, 200, projectPosts);
+    db.findAllProjects(function (error, projects) {
+        if (error)
+            respond(response, 500, http.STATUS_CODES[500], "text/plain");
+        else
+            respondAsJSON(response, 200, projects);
+    });
 }
 
 function getAdminHandler(request, response) {
-    // make login system
+    // TODO: make login system
     console.error("sent a GET to /admin");
     respond(response, 200, "Not finished you fool!", "text/plain");
 }
 
 function loginHandler(request, response) {
-    // make login system
+    // TODO: make login system
     //getKeyValuePairsFromStream(request, function () {});
     console.error("sent a POST to /admin");
     respond(response, 200, "Not finished you fool!", "text/plain");
@@ -156,7 +187,7 @@ function loginHandler(request, response) {
 // 405 - method not allowed
 
 var server = http.createServer(function (request, response) {
-    if (!Router.resolve(request, response)) {
+    if (!router.resolve(request, response)) {
         // send a 404
         console.error("Unable to route " + url.parse(request.url).pathname + " : sending 404");
         respond(response, 404, http.STATUS_CODES[404],"text/plain");
