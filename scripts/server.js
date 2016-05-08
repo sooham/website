@@ -1,11 +1,16 @@
-// Todo: use better HTTP response codes
+// Set the error event for response
+// TODO: Handle errors more gracefully using Errors node.js lib
+// TODO: What is the difference between implicit and explicit headers?
+// TODO: use better HTTP response codes
 var http = require("http");
 var querystring = require("querystring");
 var tls = require("tls"); // TODO: (make HTTPS) 
 var url = require("url");
 
+
 var Router = require("./router");
 var Database = require("./database");
+var userServices = require("./userServices");
 
 // create instances of local modules
 var router = new Router();
@@ -87,6 +92,7 @@ router.add("GET", /^\/blog\/?$/, getBlogPostsHandler);
 router.add("GET", /^\/projects\/?$/, projectsHandler);
 router.add("POST", /^\/admin\/?$/, loginHandler);
 router.add("POST", /^\/blog\/?$/, postBlogPostHandler);
+router.add("POST", /^\/admin\/create\/?$/, adminCreationHandler);
 
 // code to save a BlogPost
 post.save(function (error, post) {
@@ -168,6 +174,7 @@ function projectsHandler(request, response) {
     });
 }
 
+// TODO: Why does this not conflict with /admin/index.html?
 function getAdminHandler(request, response) {
     // TODO: make login system
     console.error("sent a GET to /admin");
@@ -175,10 +182,26 @@ function getAdminHandler(request, response) {
 }
 
 function loginHandler(request, response) {
-    // TODO: make login system
-    //getKeyValuePairsFromStream(request, function () {});
-    console.error("sent a POST to /admin");
+    getKeyValuePairsFromStream(request, function (error, data) {
+        if (error) {
+            respond(response, 500, http.STATUS_CODES[500], "text/plain"); // TODO: double check
+        } else {
+            // TODO: make userServices.validate and other
+            userServices.validate(data, function (error, isCorrectLogin) {
+                if (isCorrectLogin) {
+                    // set cookies and
+                    // redirect to the create blog post page
+                } else {
+                    // send a incorrect username or password message
+                }
+            })
+        }
+    });
     respond(response, 200, "Not finished you fool!", "text/plain");
+}
+
+function adminCreationHandler(request, response) {
+    // create a new admin here iff db has 0 admins
 }
 
 // 401 - unauthorized

@@ -28,9 +28,16 @@ var Database = module.exports = function() {
         }, {collection: "tags"});
     this.tagsSchema.index({ name: 1});
 
+    this.userSchema = new mongoose.Schema({
+            name: String,
+            password: String,
+            salt: String
+        });
+
     this.blog = this.connection.model("blog", this.blogSchema);
     this.projects = this.connection.model("projects", this.projectsSchema);
     this.tags = this.connection.model("tags", this.tagsSchema);
+    this.user = this.connection.model("user", this.userSchema);
 };
 
 Database.prototype.findPostWithTitle = function(name, callback) {
@@ -57,6 +64,10 @@ Database.prototype.removePostWithTitle = function(name, callback) {
 Database.prototype.savePost(post, callback) {
     var newPost = new this.blog(post);
     newPost.save(callback);
+}
+
+Database.prototype.getSoohamLoginCredentials = function (callback) {
+    this.user.find(callback);
 }
 
 // TODO: Add methods to update post
