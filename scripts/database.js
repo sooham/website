@@ -29,9 +29,10 @@ var Database = module.exports = function() {
     this.tagsSchema.index({ name: 1});
 
     this.userSchema = new mongoose.Schema({
-            name: String,
+            usermail: String,
             password: String,
             salt: String
+            loginSession: String
         });
 
     this.blog = this.connection.model("blog", this.blogSchema);
@@ -67,7 +68,7 @@ Database.prototype.savePost(post, callback) {
 }
 
 Database.prototype.getSoohamLoginCredentials = function (callback) {
-    this.user.find(callback);
+    this.user.find(callback)
 }
 
 // TODO: Add methods to update post

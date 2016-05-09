@@ -21,4 +21,8 @@ var salt = crypto.randomBytes(length, function (err, result) {
 });
 var sha256Hash = crypto.createHash("sha256");
 
-module.exports = 
+module.exports = {
+    validate: function(userData, callback) {
+        // add the salt to the
+    }
+}
