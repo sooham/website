@@ -30,7 +30,7 @@ a {
 }
 
 #navbar li {
-    font-size: 1.3em; 
+    font-size: 1.3em;
     font-family: Helvetica, arial, sans-serif;
     display: block;
     line-height: 2em;
@@ -44,13 +44,12 @@ a {
     color: #131516;
 }
 
-
 #content {
     position: relative;
     top: 6em;
     left: 35%;
-    min-width:40em;
-    width:58%;
+    min-width: 40em;
+    width: 58%;
 }
 
 #post-template {
@@ -66,11 +65,9 @@ a {
     font-size: 1.6em;
 }
 
-
 .post-content {
     font-family: 'adobe_caslon_proregular', Baskerville, Georgia;
     font-size: 1.1em;
     font-weight: normal;
     font-style: normal;
 }
-

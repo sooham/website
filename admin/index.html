@@ -1,29 +1,31 @@
 <!doctype html>
+
 <head>
     <meta charset="utf-8">
     <title>Sooham_Rafiz | Admin Login</title>
     <link rel="stylesheet" type="text/css" href="../style/admin.css" />
 </head>
+
 <body>
     <header id="login-header">
-        <form name="login" action="/admin" method="post">
+        <form id="login-form" name="login" action="/admin" method="POST" autocomplete="off">
             <fieldset>
                 <legend>Login</legend>
-            <ul>
-                <li>
-                    <label for="usermail" >Email:</label>
-                    <input type="email" name="usermail" placeholder="yourname@email.com" required>
-                </li>
-                <li>
-                    <label for="password">Password:</label>
-                    <input type="password" placeholder="password" name="password" required>
-                </li>
-                <li>
-                    <label ></label>
-                    <input type="submit" value="Login">
-                </li>
-            </ul>
-        </fieldset>
+                <ul>
+                    <li>
+                        <label for="usermail">Email:</label>
+                        <input type="email" name="usermail" placeholder="yourname@email.com" required autofocus>
+                    </li>
+                    <li>
+                        <label for="password">Password:</label>
+                        <input type="password" placeholder="password" name="password" required>
+                    </li>
+                    <li>
+                        <input type="submit" value="Login">
+                    </li>
+                </ul>
+            </fieldset>
         </form>
     </header>
+    <script src="../scripts/admin.js"></script>
 </body>

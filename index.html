@@ -1,4 +1,5 @@
 <!doctype html>
+
 <head>
     <meta charset="utf-8">
     <title>Sooham_Rafiz</title>
@@ -6,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="./style/index.css" />
     <link rel="stylesheet" type="text/css" href="./style/fonts/fonts.css" />
 </head>
+
 <body>
     <header id="site-head">
         <h1>
@@ -13,22 +15,20 @@
             <a href="/">Sooham_Rafiz.<span class="site-head-state">{{state}}</span></a>
         </h1>
     </header>
-
     <nav id="navbar">
         <ul>
             <li><a href="/blog">Blog</a></li>
             <li><a href="http://www.github.com/sooham">Github</a></li>
             <li><a href="/projects">Projects</a>
-            <li><a href="/resume.pdf">Resume</a></li>
+                <li><a href="/resume.pdf">Resume</a></li>
         </ul>
     </nav>
-
     <main id="content">
-    <!-- id post-template is a template used to display blog posts or projects 
+        <!-- id post-template is a template used to display blog posts or projects
          hidden through CSS -->
         <article id="post-template" class="post">
             <header class="post-header">
-            <h2><a href="/blog/{{encoded_title}}">{{title}}</a></h2>
+                <h2><a href="/blog/{{encoded_title}}">{{title}}</a></h2>
             </header>
             <section class="post-content">
                 {{content}}
@@ -37,4 +37,3 @@
     </main>
     <script src="./scripts/index.js" async></script>
 </body>
-
