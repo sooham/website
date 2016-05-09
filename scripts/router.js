@@ -3,20 +3,20 @@ var url = require("url");
 // A simple URL router
 var Router = module.exports = function() {
     this.routes = [];
-}
+};
 
 /* Add a patten with method and associated handler to the router
  * @method String
  * @pattern RegExp
  * @handler Function (http.IncomingMessage, http.ServerResponse,  ...)
  */
-Router.prototype.add = function(method, pattern, handler) {
+Router.prototype.add = function(method, pattern, protocol, handler) {
     this.routes.push({
         "method": method,
         "pattern": pattern,
         "handler": handler
     });
-}
+};
 
 /* Resolves a request and calls the associated function handler on
  * the request and any captured groups. returns true if the request
@@ -30,7 +30,6 @@ Router.prototype.resolve = function(request, response) {
     console.error("Routing URL: " + path);
 
     var isRouted = this.routes.some(function(route) {
-        // TODO: Do I need to make this deal with POST requests to /admin?
         var match = route.pattern.exec(path);
         if (match && route.method === request.method) {
             // call route.handler with request and all captured groups
@@ -43,4 +42,4 @@ Router.prototype.resolve = function(request, response) {
         return false;
     });
     return isRouted;
-}
+};
