@@ -10,7 +10,7 @@ var Router = module.exports = function() {
  * @pattern RegExp
  * @handler Function (http.IncomingMessage, http.ServerResponse,  ...)
  */
-Router.prototype.add = function(method, pattern, protocol, handler) {
+Router.prototype.add = function(method, pattern, handler) {
     this.routes.push({
         "method": method,
         "pattern": pattern,

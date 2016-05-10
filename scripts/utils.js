@@ -1,5 +1,7 @@
+var http = require("http");
+
 /* utils - utility functions */
-module.exports = {
+module.exports = new (function(){
 
     /* Respond with statusCode, data with type and headers
      *
@@ -9,7 +11,7 @@ module.exports = {
      * @type String
      * @headers Object
      */
-    respond: function (response, statusCode, data, type, header) {
+    this.respond = function (response, statusCode, data, type, header) {
         console.error("statusCode: " + statusCode);
         console.error("data: " + data.toString());
 
@@ -28,21 +30,22 @@ module.exports = {
         if (data)
             response.write(data);
         response.end();
-    },
+        console.error("\n\n");
+    };
 
-    respondAsJSON: function(response, statusCode, data, header) {
-        respond(response, statusCode, JSON.stringify(data), "application/json", header);
-    },
+    this.respondAsJSON = function(response, statusCode, data, header) {
+        this.respond(response, statusCode, JSON.stringify(data), "application/json", header);
+    };
 
-    respondWithStatus: function(response, statusCode, headers) {
-        respond(response, statusCode, http.STATUS_CODES[statusCode], null, headers);
-    },
+    this.respondWithStatus = function(response, statusCode, headers) {
+        this.respond(response, statusCode, http.STATUS_CODES[statusCode], null, headers);
+    };
 
     /*
      * Scrape key value pairs from request body
      * @request http.IncomingMessage and calls callback on body
      */
-    getKVPairsFromBody: function(request, callback) {
+    this.getKVPairsFromBody = function(request, callback) {
         var body = "";
 
         request.on("error", function (error) {
@@ -63,10 +66,10 @@ module.exports = {
             } catch (e) {error = e;}
             callback(error, result);
         });
-    },
+    };
 
     /* parses the cookies from request header */
-    parseCookies: function(request) {
+    this.parseCookies = function(request) {
         var list = {};
         rc = request.headers.cookie;
         if (rc)
@@ -76,5 +79,5 @@ module.exports = {
             });
 
         return list;
-    }
-};
+    };
+})();

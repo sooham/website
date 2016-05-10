@@ -3,9 +3,11 @@
 var mongoose = require("mongoose");
 
 var Database = module.exports = function() {
-    this.connection = mongoose.connect(
+    var connection = mongoose.connect(
         "mongodb://localhost:27017/data/db", { config: { autoIndex: false } }
     );
+
+    this.connection = mongoose.connection;
 
     this.blogSchema = new mongoose.Schema({
         title: { type: String, trim: true },
@@ -34,10 +36,10 @@ var Database = module.exports = function() {
         loginSession: String
     });
 
-    this.blog = this.connection.model("blog", this.blogSchema);
-    this.projects = this.connection.model("projects", this.projectsSchema);
-    this.tags = this.connection.model("tags", this.tagsSchema);
-    this.user = this.connection.model("user", this.userSchema);
+    this.blog = connection.model("blog", this.blogSchema);
+    this.projects = connection.model("projects", this.projectsSchema);
+    this.tags = connection.model("tags", this.tagsSchema);
+    this.user = connection.model("user", this.userSchema);
 };
 
 Database.prototype.findPostWithTitle = function(name, callback) {
