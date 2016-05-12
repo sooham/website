@@ -1,4 +1,5 @@
 var http = require("http");
+var querystring = require("querystring");
 
 /* utils - utility functions */
 module.exports = new (function(){
@@ -46,6 +47,7 @@ module.exports = new (function(){
      * @request http.IncomingMessage and calls callback on body
      */
     this.getKVPairsFromBody = function(request, callback) {
+        console.error("getting KV pairs from body");
         var body = "";
 
         request.on("error", function (error) {
@@ -53,17 +55,22 @@ module.exports = new (function(){
             // send a response through error
             callback(error);
         }).on("data", function (data) {
+            console.error("found data " + (data));
             body += data;
             // too much POSTed data
             if (body.length > 1e6) {// TODO: Why?
+                console.error("too much stuff");
                 request.connection.destroy();
                 // TODO: send error response
             }
         }).on("end", function () {
+            console.error("end event fired");
             var result, error;
             try {
                 result = querystring.parse(body);
             } catch (e) {error = e;}
+            console.error("error is " + error);
+            console.error("result is" + JSON.stringify(result));
             callback(error, result);
         });
     };

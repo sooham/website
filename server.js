@@ -10,10 +10,10 @@ var querystring = require("querystring");
 var url = require("url");
 
 
-var Router = require("./router");
-var Database = require("./database");
-var userServices = require("./userServices");
-var utils = require("./utils");
+var Router = require("./scripts/router");
+var Database = require("./scripts/database");
+var userServices = require("./scripts/userServices");
+var utils = require("./scripts/utils");
 
 console.error("All modules imported");
 
@@ -24,7 +24,7 @@ var HTTPS_PORT = 8000;
 var router = new Router();
 var db = new Database();
 var fileServer = ecstatic({
-    root: __dirname + "/public",
+    root: __dirname,
     port: HTTPS_PORT,
     showDir: false,
     showDotfiles: false
@@ -119,7 +119,7 @@ function loginHandler(request, response) {
         // get the login form values and check credentials
         utils.getKVPairsFromBody(request, function(error, data) {
             if (error) {
-                respondWithStatus(response, 500);
+                utils.respondWithStatus(response, 500);
             } else {
                 console.error("form info usermail: " + data.usermail + " pass: " + data.password);
                 // get Sooham's login credentials from db
@@ -138,11 +138,12 @@ function loginHandler(request, response) {
                                 // and we need to check the domain of the cookie
                                 utils.respondWithStatus(response, 301, {
                                     "Location": "https://" + request.headers.host + "/editor",
-                                    "Set-Cookie": "loginSession=" + result[0].loginSession + ";" + " Secure;"
+                                    //"Set-Cookie": "loginSession=" + result[0].loginSession + ";Secure;path=/;domain=." + request.headers.host
+                                    "Set-Cookie": "loginSession=" + result[0].loginSession + ";Secure;Domain=.localhost:" + HTTPS_PORT
                                 });
                             } else {
                                 console.log("Incorrect email / password");
-                                respond(response, 200, "Incorrect email or password");
+                                utils.respond(response, 200, "Incorrect email or password");
                             }
                         });
                     } else {
@@ -157,7 +158,7 @@ function loginHandler(request, response) {
         // request not passed though HTTPS connection, redirect to HTTPS version of /admin
         console.error("Using HTTP");
         //utils.respondWithStatus(response, 301, { "Location": "https://" + request.headers.host + request.url });
-        utils.respondWithStatus(response, 301, { "Location": "http://localhost:" + HTTP_PORT + request.url });
+        utils.respondWithStatus(response, 301, { "Location": "https://localhost:" + HTTPS_PORT + request.url });
     }
 }
 
@@ -170,7 +171,7 @@ function postBlogPostHandler(request, response) {
         // posting begin done over HTTPS
         // check if the loginSession Cookie is in the header of request is correct
         var cookies = utils.parseCookies(request);
-        console.error("Cookies from request: " + cookies);
+        console.error("Cookies from request: " + JSON.stringify(cookies));
         db.getSoohamLoginCredentials(function(error, loginCreds) {
             if (error)
                 utils.respondWithStatus(response, 500);
@@ -271,18 +272,19 @@ function adminCreationHandler(request, response) {
             if (loginCreds.length) {
                 console.error("user already exists");
                 // user already exists, deny creating a new login
-                utils.respondWithStatus(request, 403);
+                utils.respondWithStatus(response, 403);
             } else {
                 console.error("user does not exist");
                 // create a new user and store in database
                 utils.getKVPairsFromBody(request, function(error, data) {
-                    console.error("account creation for " + data);
+                    console.error("account creation for " + JSON.stringify(data));
                     if (error) {
-                        utils.respondWithStatus(request, 500);
+                        utils.respondWithStatus(response, 500);
                     } else if (data.usermail && data.password) {
                         console.error("storing into database...");
                         // TODO: need to do proper usermail validation and password length verification
-                        userServices.generateRandomBytes(user.password.length, function(error, salt) {
+                        userServices.generateRandomBytes(data.password.length, function(error, salt) {
+                            salt = salt.toString("hex");
                             if (error)
                                 utils.respondWithStatus(response, 500);
 
@@ -294,23 +296,25 @@ function adminCreationHandler(request, response) {
                             userServices.generateRandomBytes(128, function(error, rand) {
                                 if (error)
                                     utils.respondWithStatus(response, 500);
-                                userJSON.loginSession = rand;
-                            });
 
-                            console.error("db to store: " + userJSON);
+                                userJSON.loginSession = rand.toString("hex");
 
-                            var user = new db.user(userJSON);
-                            user.save(function(error) {
-                                if (error)
-                                    utils.respondWithStatus(request, 500);
-                                else
-                                    utils.respondWithStatus(request, 200);
+                                console.error("db to store: " + userJSON);
+                                var user = new db.user(userJSON);
+
+                                console.error("calling save()");
+                                user.save(function(error) {
+                                    if (error)
+                                        utils.respondWithStatus(response, 500);
+                                    else
+                                        utils.respondWithStatus(response, 200);
+                                });
                             });
                         });
                     } else {
                         // incoming POST request is not correct
                         console.error("post request not correct");
-                        utils.respondWithStatus(request, 400);
+                        utils.respondWithStatus(response, 400);
                     }
                 });
             }
@@ -329,6 +333,7 @@ function getEditorHandler(request, response) {
         //utils.respondWithStatus(301, { "Location": "https://" + request.headers.host + "/admin" });
         utils.respondWithStatus(response, 301, { "Location": "https://localhost:" + HTTPS_PORT + "/admin" });
     } else {
+        // TODO: Check cookie is set
         fileServer(request, response);
     }
     // otherwise, fetch from the file system
@@ -359,9 +364,11 @@ var options = { "key": key, "cert": cert };
 
 // create HTTPS server to deal with all admin requests
 var HTTPSServer = https.createServer(options, function(request, response) {
+    // TODO: check if request type is correct GET and POST
     if (!router.resolve(request, response)) {
-        console.error("Unable to route " + url.parse(request.url).pathname + " : sending 404");
-        utils.respondWithStatus(response, 404);
+        console.error("Unable to route " + url.parse(request.url).pathname + " : to fileServer");
+        // check if POST b4 file server TODO
+        fileServer(request, response);
     }
 });
 
