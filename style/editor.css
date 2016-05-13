@@ -1,0 +1,63 @@
+body {
+    background: #e27a3f;
+    font-family: Helvetica, arial, sans-serif;
+    text-align: center;
+}
+
+#add-post-hero {
+}
+
+#add-post-hero h1 {
+    color: white;
+    margin: 2% 3%;
+}
+
+#editor {
+    background: #df5a49;
+    border: 2px solid white;
+    margin: 0 15%;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#blog-post-form ul {
+    color: white;
+    list-style: none;
+    padding: 0;
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+}
+
+#blog-post-form li {
+    padding: 0.5em;
+    text-decoration: left;
+}
+
+#blog-post-form li > * {
+    display: inline-block;
+    text-align: left;
+}
+
+#blog-post-form input[type="text"], #blog-post-form input[type="date"] {
+    float: right;
+    width: 80%;
+}
+
+#blog-post-form textarea {
+    float: right;
+    width: 80%;
+    max-width: 80%;
+    min-width: 80%;
+    min-height: 20em;
+}
+
+#blog-post-form input[type="submit"] {
+    text-align: center;
+    font-size: 20px;
+    width: 10em;
+    border: 2px solid white;
+    color: white;
+    background: #e27a3f;
+}
