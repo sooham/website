@@ -11,7 +11,7 @@
 
 var crypto = require("crypto");
 
-module.exports = new (function () {
+module.exports = new(function() {
     this.validate = function(formData, userData, callback) {
         // prepend salt to the form data password and hash
         // hash username
@@ -20,7 +20,7 @@ module.exports = new (function () {
         var formEmail = this.hash(formData.usermail);
 
         callback(formEmail === userData.usermail &&
-                formPassword === userData.password);
+            formPassword === userData.password);
 
     };
 
@@ -30,7 +30,7 @@ module.exports = new (function () {
         crypto.randomBytes(passLength, callback);
     };
 
-    this.hash = function (input) {
+    this.hash = function(input) {
         var h = crypto.createHash("sha256");
         return h.update(input).digest("hex");
     };
