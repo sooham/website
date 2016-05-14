@@ -17,7 +17,7 @@
     <header id="site-head">
         <h1>
             <!-- site-head-state span tag and style is filled in by javascript -->
-            <a href="/" class="blogButton">Sooham_Rafiz.<span id="site-head-state">{{state}}</span></a>
+            <a href="/" class="blogButton">Sooham_Rafiz.<span id="site-head-state"></span></a>
         </h1>
     </header>
     <nav id="navbar">
@@ -35,9 +35,7 @@
             <header class="post-header">
                 <h2><a href="/blog/{{encodedTitle}}">{{title}}</a></h2>
             </header>
-            <section class="post-content">
-                {{body}}
-            </section>
+            <section class="post-content">{{body}}</section>
         </article>
     </main>
 </body>

@@ -11,7 +11,7 @@
 
 var crypto = require("crypto");
 
-module.exports = new(function() {
+module.exports = new (function() {
     this.validate = function(formData, userData, callback) {
         // prepend salt to the form data password and hash
         // hash username

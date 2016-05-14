@@ -2,6 +2,7 @@
 // TODO: Handle errors more gracefully using Errors node.js lib
 // TODO: What is the difference between implicit and explicit headers?
 // TODO: use a logger with different error severity stuff
+// TODO: there might be some fake cookies for testing here, forgot about it
 var ecstatic = require("ecstatic");
 var fs = require("fs");
 var http = require("http");
@@ -44,7 +45,6 @@ db.connection.on("error", function() {
 // how does mongoose handle that?
 
 // add routes for different URLs
-router.add("GET", /^\/$/, rootHandler);
 router.add("GET", /^\/blog\/([^\/]+)\/?$/, getBlogPostHandler);
 router.add("GET", /^\/blog\/?$/, getBlogPostsHandler);
 router.add("GET", /^\/projects\/?$/, projectsHandler);
@@ -57,12 +57,6 @@ router.add("GET", /^\/editor\/?$/, getEditorHandler);
 console.error("added all routes");
 
 // Handlers for different routes
-
-/* Handles the / */
-function rootHandler(request, response) {
-    // do a redirect to /blog
-    utils.respondWithStatus(response, 301, { "Location": "/blog" });
-}
 
 /* Handles the get /blog/post-name URL*/
 function getBlogPostHandler(request, response) {
@@ -102,6 +96,7 @@ function getBlogPostsHandler(request, response) {
 
 /* Handles the /projects URL*/
 function projectsHandler(request, response) {
+    // TODO: get from github
     db.findAllProjects(function(error, projects) {
         console.error("found from database: " + projects.toString());
         if (error)
@@ -139,7 +134,7 @@ function loginHandler(request, response) {
                                 utils.respondWithStatus(response, 301, {
                                     "Location": "https://" + request.headers.host + "/editor",
                                     //"Set-Cookie": "loginSession=" + result[0].loginSession + ";Secure;path=/;domain=." + request.headers.host
-                                    "Set-Cookie": "loginSession=" + result[0].loginSession + ";Secure;Domain=.localhost:" + HTTPS_PORT
+                                    "Set-Cookie": "loginSession=" + result[0].loginSession + ";path=/;httpOnly;Secure"
                                 });
                             } else {
                                 console.log("Incorrect email / password");
@@ -180,10 +175,13 @@ function postBlogPostHandler(request, response) {
             if (loginCreds.length && (loginCreds[0].loginSession === cookies.loginSession)) {
                 console.error("cookie correct, can post");
                 // get the post blog body and save it into the database
-                getKeyValuePairsFromStream(request, function(error, newPost) {
+                utils.getKVPairsFromBody(request, function(error, newPost) {
                     if (error) {
                         utils.respondWithStatus(response, 500);
                     } else {
+                        newPost.tags = newPost.tags.split(",");
+                        var inputDate = newPost.date.split("-");
+                        newPost.date = new Date(inputDate[0], inputDate[1]-1, inputDate[2]);
                         console.error("KV pairs from blog post request:\n" + JSON.stringify(newPost));
                         // check if post with title already exists
                         db.blog.find({ title: newPost.title }, function(error, data) {
@@ -194,8 +192,9 @@ function postBlogPostHandler(request, response) {
                                 respond(response, 400, "This blog post title already exists");
                             } else {
                                 console.error("saving the blog post");
-                                var newPost = new db.blog(newPost);
-                                db.savePost(newPost, function(err) {
+                                var savePost = new db.blog(newPost);
+                                console.error("post object is" + savePost);
+                                savePost.save(function(error) {
                                     if (error)
                                         utils.respondWithStatus(response, 500);
                                     else {
@@ -203,7 +202,7 @@ function postBlogPostHandler(request, response) {
                                         //    "Location": "http://" + request.headers.host + "/" + newPost.title
                                         //});
                                         utils.respondWithStatus(response, 201, {
-                                            "Location": "http://localhost:" + HTTP_PORT + "/" + newPost.title
+                                            "Location": "http://localhost:" + HTTP_PORT + "/" + encodeURIComponent(savePost.title)
                                         });
                                     }
                                 });
@@ -231,30 +230,29 @@ function postBlogPostHandler(request, response) {
 
 // TODO: Why does this not conflict with /admin/index.html?
 function getAdminHandler(request, response) {
-    // redirect to HTTPS /admin if no loginSession cookie found
-    // else redirect to editor
-    if (!request.socket.getPeerCertificate) {
-        var cookies = utils.parseCookies(request);
-        console.error("cookies from request: " + JSON.stringify(cookies));
-        db.getSoohamLoginCredentials(function(error, loginCreds) {
-            if (error)
-                utils.respondWithStatus(response, 500);
+    // redirect to /admin if no loginSession cookie found
+    // else redirect to /editor
+    var cookies = utils.parseCookies(request);
+    console.error("cookies from request: " + JSON.stringify(cookies));
+    db.getSoohamLoginCredentials(function(error, loginCreds) {
+        if (error)
+            utils.respondWithStatus(response, 500);
 
-            if (loginCreds.length && loginCreds[0].loginSession === cookies.loginSession) {
-                console.error("cookies let you go to editor");
-                //utils.respondWithStatus(response, 301, { "Location": "https://" + request.headers.host + "/editor" });
-                utils.respondWithStatus(response, 301, { "Location": "https://localhost:" + HTTPS_PORT + "/editor" });
+        if (loginCreds.length && loginCreds[0].loginSession === cookies.loginSession) {
+            console.error("cookies let you go to editor");
+            //utils.respondWithStatus(response, 301, { "Location": "https://" + request.headers.host + "/editor" });
+            utils.respondWithStatus(response, 301, { "Location": "https://localhost:" + HTTPS_PORT + "/editor" });
+        } else {
+            console.error("no cookies go to admin");
+            console.log(request.headers);
+            if (request.socket.getPeerCertificate) {
+                fileServer(request, response);
             } else {
-                console.error("no cookies go to admin");
-                console.log(request.headers);
-                //utils.respondWithStatus(response, 301, { "Location": "https://" + request.headers.host + request.url });
                 utils.respondWithStatus(response, 301, { "Location": "https://localhost:" + HTTPS_PORT + "/admin" });
             }
-        });
-    } else {
-        // using HTTPS serve the admin/index.html file
-        fileServer(request, response);
-    }
+            //utils.respondWithStatus(response, 301, { "Location": "https://" + request.headers.host + request.url });
+        }
+    });
 }
 
 
@@ -327,6 +325,7 @@ function adminCreationHandler(request, response) {
 }
 
 function getEditorHandler(request, response) {
+    // TODO: need to check for cookie
     if (!request.socket.getPeerCertificate) {
         console.error("HTTP");
         // using HTTP connection, redirect to /admin
@@ -342,8 +341,8 @@ function getEditorHandler(request, response) {
 // create HTTP server to deal with all visitor requests
 var server = http.createServer(function(request, response) {
     if (!router.resolve(request, response)) {
-        console.error("Unable to route " + url.parse(request.url).pathname + " : sending 404");
-        utils.respondWithStatus(response, 404);
+        console.error("Unable to route " + url.parse(request.url).pathname + " : to fileServer");
+        fileServer(request, response);
     }
 });
 
