@@ -333,9 +333,19 @@ function getEditorHandler(request, response) {
         utils.respondWithStatus(response, 301, { "Location": "https://localhost:" + HTTPS_PORT + "/admin" });
     } else {
         // TODO: Check cookie is set
-        fileServer(request, response);
+        var cookies = utils.parseCookies(request);
+        db.getSoohamLoginCredentials(function(error, loginCreds) {
+            if (error)
+                utils.respondWithStatus(response, 500);
+
+            if (loginCreds.length && loginCreds[0].loginSession === cookies.loginSession) {
+                fileServer(request, response);
+            } else {
+               //utils.respondWithStatus(response, 301, { "Location": "https://" + request.headers.host + "/admin" });
+               utils.respondWithStatus(response, 301, { "Location": "https://localhost:" + HTTPS_PORT + "/admin" });
+            }
+        });
     }
-    // otherwise, fetch from the file system
 }
 
 // create HTTP server to deal with all visitor requests
