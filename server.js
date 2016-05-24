@@ -133,7 +133,6 @@ function loginHandler(request, response) {
                                 // and we need to check the domain of the cookie
                                 utils.respondWithStatus(response, 301, {
                                     "Location": "https://" + request.headers.host + "/editor",
-                                    //"Set-Cookie": "loginSession=" + result[0].loginSession + ";Secure;path=/;domain=." + request.headers.host
                                     "Set-Cookie": "loginSession=" + result[0].loginSession + ";path=/;httpOnly;Secure"
                                 });
                             } else {
