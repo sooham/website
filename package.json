@@ -1,31 +1,26 @@
 {
-  "name": "sooham",
-  "version": "0.1.0",
-  "description": "Sooham Rafiz's personal website, uses mongodb and node.js backend",
-  "main": "server.js",
+  "name": "sooham-blog",
+  "version": "1.0.0",
+  "description": "Sooham Rafiz's blog",
+  "main": "./src/app.js",
   "dependencies": {
-    "ecstatic": "^1.4.0",
-    "mongoose": "^4.4.16"
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.9.1",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "css-loader": "^0.23.1",
+    "style-loader": "^0.13.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "NODE_ENV=development webpack-dev-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sooham/sooham.github.io.git"
-  },
-  "keywords": [
-    "personal",
-    "website",
-    "sooham",
-    "rafiz"
-  ],
   "author": "Sooham Rafiz",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/sooham/sooham.github.io/issues"
-  },
-  "homepage": "https://github.com/sooham/sooham.github.io#readme"
+  "keywords": []
 }
