@@ -55,7 +55,8 @@ var config = {
         // some aliases for easy requires in server.js
         alias: {
             components: path.join(src, "components"),
-            utils: path.join(src, "utils")
+            utils: path.join(src, "utils"),
+            routes: path.join(src, "routes")
         },
         extensions: ["", ".js", ".jsx", ".webpack.js"]
     },

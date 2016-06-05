@@ -59,6 +59,7 @@ var config = {
             components: path.join(src, "components"),
             styles: path.join(src, "styles"),
             utils: path.join(src, "utils"),
+            routes: path.join(src, "routes"),
             modules: modules
         },
         extensions: ["", ".js", ".jsx", ".webpack.js"]
