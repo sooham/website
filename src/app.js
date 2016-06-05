@@ -1,12 +1,16 @@
 // @flow
 
 import React from "react";
-import {render} from "react-dom";
+import ReactDOM from "react-dom";
 
-class App extends React.Component {
-    render () {
-        return (<p> Hello React!</p>);
+var App = React.createClass({
+    getInitialState: function () {
+        return {};
+    },
+
+    render: function () {
+        return (/*some way to get the blog posts here*/);
     }
-}
+});
 
-render(<App/>, document.getElementById("app"));
+ReactDOM.render(<App/>, document.getElementById("app"));

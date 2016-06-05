@@ -2,10 +2,12 @@
   "name": "sooham-blog",
   "version": "1.0.0",
   "description": "Sooham Rafiz's blog",
-  "main": "./src/app.js",
+  "main": "webpack.config.js",
   "dependencies": {
+    "dotenv": "^2.0.0",
     "react": "^15.1.0",
-    "react-dom": "^15.1.0"
+    "react-dom": "^15.1.0",
+    "react-router": "^2.4.1"
   },
   "devDependencies": {
     "babel-core": "^6.9.1",
@@ -17,7 +19,12 @@
     "style-loader": "^0.13.1"
   },
   "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server",
+    "start": "if [ \"$NODE_ENV\" == \"development\" ]; then npm run start:dev;else npm run start:prod; fi;",
+    "start:dev": "webpack-dev-server",
+    "start:prod": "npm run build && node server.bundle.js",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "webpack",
+    "build:server": "webpack --config webpack.server.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sooham Rafiz",

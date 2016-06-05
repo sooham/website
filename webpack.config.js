@@ -1,23 +1,37 @@
+// @flow
+
+// config file for the development build
+// using the webpack-dev-server
+
 var webpack = require("webpack");
+
 var path    = require("path"),
-    src     = path.resolve(__dirname, "src"),
-    build   = path.resolve(__dirname, "build");
+    src     = path.join(__dirname, "src"),
+    dest    = path.join(__dirname, "public"),
+    modules = path.join(__dirname, "node_modules");
 
 var NODE_ENV = process.env.NODE_ENV;
-
 var isDev = NODE_ENV == "development";
 
-var definePlugin = new webpack.DefinePlugin({
-    __DEV__: isDev
+// define variable __DEV__ to allow for development
+// mode specific code execution
+var devPlugin = new webpack.DefinePlugin({
+    __DEV__: JSON.stringify(isDev)
 });
 
 var config = {
-    entry: path.join(src, "app.js"),
+    // multiple entry points
+    // home -> portfolio {home,blog,projects,demos,resume}
+    // admin -> editor {editor}
+    entry: {
+        home: path.join(src, "home.js"),
+        admin: path.join(src, "admin.js")
+    },
 
     output: {
-        path: build,
+        path: dest,
         publicPath: "/",
-        filename: "bundle.js"
+        filename: "[name].bundle.js"
     },
 
     module: {
@@ -28,24 +42,38 @@ var config = {
         }]
     },
 
-    plugins: [
+    // TODO: make sure all standard plugins for
+    // prodcution are used i.e minification etc
+    plugins: (isDev ? [
         new webpack.HotModuleReplacementPlugin(),
-        definePlugin
-    ],
+    ] : [
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.optimize.UgligyJsPlugin()
+    ]).concat([devPlugin]),
 
+
+    // add .jsx extension for JSX files
     resolve: {
+        alias: {
+            components: path.join(src, "components"),
+            styles: path.join(src, "styles"),
+            utils: path.join(src, "utils"),
+            modules: modules
+        },
         extensions: ["", ".js", ".jsx", ".webpack.js"]
     },
 
     // generate source map for easy debugs
     devtool: "source-map",
 
-    // webpack-dev-server config
+    // webpack-dev-server configuration
     devServer: {
         colors: true,
         inline: true,
-        contentBase: src,
         hot: true,
+        historyApiFallback: true,
+        contentBase: dest
     }
 };
 
