@@ -49,7 +49,7 @@ var config = {
     ] : [
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.optimize.UgligyJsPlugin()
+        new webpack.optimize.UglifyJsPlugin()
     ]).concat([devPlugin]),
 
 
