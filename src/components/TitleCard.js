@@ -1,12 +1,14 @@
 import React from "react";
 
+import NavLink from "components/NavLink";
+
 export default React.createClass({
     render() {
         return (
             <div>
-                <header>
+                <NavLink to="/" onlyActiveOnIndex>
                     <h2>Sooham_Rafiz</h2>
-                </header>
+                </NavLink>
                 {this.props.children}
             </div>
         );

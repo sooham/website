@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 export default React.createClass({
     render() {
@@ -6,12 +7,12 @@ export default React.createClass({
             <div>
                 <h5>Project</h5>
                 <ul>
-                    <li>Proj1</li>
-                    <li>Proj2</li>
-                    <li>Proj3</li>
-                    <li>Proj4</li>
+                    <li><Link to="/show/project/projex">Proj1</Link></li>
+                    <li><Link to="/show/project/projex">Proj2</Link></li>
+                    <li><Link to="/show/project/projex">Proj3</Link></li>
+                    <li><Link to="/show/project/projex">Proj4</Link></li>
                     <li>...</li>
-                    <li>Proj10</li>
+                    <li><Link to="/show/project/projex">Proj10</Link></li>
                 </ul>
             </div>
         );

@@ -1,9 +1,11 @@
 import React from "react";
+import { Link } from "react-router";
 
 export default React.createClass({
     render() {
         return (
             <div>
+                <Link to="/show/projects">Back</Link>
                 <article>
                     <header>
                         <h2>Project Post 1</h2>
