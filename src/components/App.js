@@ -1,10 +1,11 @@
 import React from "react";
 
 export default React.createClass({
-    render() {
+    render: function() {
+
         return (
             <div>
-                <h5>Tags</h5>
+                {this.props.children}
             </div>
         );
     }

@@ -7,5 +7,3 @@ import homeRoutes from "routes/homeRoutes";
 render((
     <Router routes={homeRoutes} history={browserHistory}/>
 ), document.getElementById("app"));
-
-

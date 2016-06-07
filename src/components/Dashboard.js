@@ -1,18 +1,24 @@
 import React from "react";
 import { Link } from "react-router";
 
+import data from "utils/data";
+
+import "styles/app.css";
+
 export default React.createClass({
-    render() {
+    render: function() {
+        const categories = data.getAll();
         return (
-            <div>
+           <div className="Sidebar">
+                <h1>Sooham_Rafiz</h1>
                 <ul role="nav">
-                    <li><Link to="/show/blog/p/1">Blog</Link></li>
-                    <li><Link to="/show/projects">Projects</Link></li>
-                    <li><Link to="/show/demos/titlehere">Demos</Link></li>
-                    <li>Resume</li>
+                    {categories.map((category, index) => (
+                        <li key={index}>
+                            <Link to={`/${category.name}/`}>{category.name}</Link>
+                        </li>
+                    ))}
                 </ul>
-                <h6>Contact Info</h6>
-            </div>
+           </div>
         );
     }
 });

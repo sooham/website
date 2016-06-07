@@ -1,0 +1,24 @@
+.Sidebar {
+    float: left;
+    background: #eee;
+    padding: 20px;
+    margin: 0 20px 20px 20px;
+    width: 200px;
+    cursor: pointer;
+}
+
+.Sidebar ul {
+    list-style-type: none;
+}
+
+.Sidebar ul li {
+    margin-top: 10px;
+}
+
+.Content {
+    padding: 20px 20px 20px 300px;
+}
+
+a {
+    text-decoration: none;
+}
