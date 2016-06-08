@@ -35,11 +35,17 @@ var config = {
     },
 
     module: {
-        loaders: [{
-            test: /\.jsx?$/,
-            loader:"babel",
-            include: src
-        }]
+        loaders: [
+            {
+                test: /\.jsx?$/,
+                loader:"babel",
+                include: src
+            },
+            {
+                test: /\.css$/,
+                loader: "style!css"
+            }
+        ]
     },
 
     // TODO: make sure all standard plugins for

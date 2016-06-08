@@ -1,16 +1,15 @@
+// @flow
+
 import React from "react";
 import { Route, IndexRoute } from "react-router";
 
-import App from "components/App";
+import ContentListFetcher from "components/ContentListFetcher";
 import Dashboard from "components/Dashboard";
-import Category from "components/Category";
-import Item from "components/Item";
+import ItemFetcher from "components/ItemFetcher";
 
 module.exports = (
-    <Route path="/" component={App}>
-        <IndexRoute component={Dashboard}/>
-        <Route path=":category" component={Category}>
-            <Route path=":item" component={Item} />
-        </Route>
+    <Route path="/" component={Dashboard}>
+        <Route path=":category" component={ContentListFetcher}/>
+        <Route path=":category/:item" component={ItemFetcher}/>
     </Route>
 );

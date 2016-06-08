@@ -43,11 +43,17 @@ var config = {
     },
 
     module: {
-        loaders: [{
-            test: /\.jsx?$/,
-            loader:"babel",
-            exculde: /node_modules/
-        }]
+        loaders: [
+            {
+                test: /\.jsx?$/,
+                loader:"babel",
+                include: /node_modules/
+            },
+            {
+                test: /\.css$/,
+                loader: "style!css"
+            }
+        ]
     },
 
     // add .jsx extension for JSX files

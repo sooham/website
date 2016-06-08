@@ -25,10 +25,10 @@ function renderPage(appHtml) {
                 <div id="app">${appHtml}</div>
                 <script src="/home.bundle.js"></script>
                 <script src="/admin.bundle.js"></script>
-            `
+            `;
 }
 const PORT = process.env.PORT || 8080;
 app.listen(PORT,
-    () => console.log(`Express Production Server running at localhost:${PORT}`);
+    () => console.log(`Express Production Server running at localhost:${PORT}`)
 );
 
