@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router";
 
+import styles from "styles/itemView.module.css";
+
 export default React.createClass({
     render: function() {
         const item = this.props.item;

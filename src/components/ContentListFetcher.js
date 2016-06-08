@@ -3,6 +3,8 @@ import data from "utils/data";
 
 import ContentListView from "components/ContentListView";
 
+// TODO: move to containers/
+// TODO: add proptypes and default props and what not
 export default React.createClass({
     updateItemList: function(category) {
         const itemList = Object.keys(data.lookupCategory(category).itemsMap);

@@ -3,6 +3,8 @@
 import React from "react";
 import { Link } from "react-router";
 
+import styles from "styles/dashboard.module.css";
+
 export default React.createClass({
     render: function() {
         return (

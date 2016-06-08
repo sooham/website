@@ -3,6 +3,8 @@ import data from "utils/data";
 
 import ItemView from "components/ItemView";
 
+// TODO: move to containers/
+// TODO: add proptypes and default props and what not
 export default React.createClass({
     updateItem: function (category, item) {
         this.setState({

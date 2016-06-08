@@ -51,7 +51,7 @@ var config = {
             },
             {
                 test: /\.css$/,
-                loader: "style!css"
+                loader: "style!css!postcss"
             }
         ]
     },
@@ -61,13 +61,21 @@ var config = {
         // some aliases for easy requires in server.js
         alias: {
             components: path.join(src, "components"),
+            containers: path.join(src, "containers"),
             utils: path.join(src, "utils"),
             routes: path.join(src, "routes")
         },
         extensions: ["", ".js", ".jsx", ".webpack.js"]
     },
 
-    plugins: [devPlugin]
+    plugins: (isDev? [] : []).concat([devPlugin]),
+
+    // postcss config (propbably won't be used on serverside)
+    postcss: [
+        require("autoprefixer")({}),
+        require("cssnano")({}),
+        require("precss")({})
+    ]
 };
 
 module.exports = config;
