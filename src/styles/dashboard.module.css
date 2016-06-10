@@ -32,7 +32,7 @@
 }
 
 #siteHeader {
-    margin: 0.8em auto 0.2em auto;
+    margin: 0.7em auto 0.2em auto;
     display: block;
 
     text-shadow: 0.08em 0.08em #6f1ca6;
@@ -41,7 +41,7 @@
     -moz-transition: all 0.15s linear;
     -o-transition: all 0.15s linear;
 
-    font-size: 8em;
+    font-size: 7em;
     font-family: "VT323";
 }
 
@@ -82,3 +82,26 @@
     font-family: Inconsolata;
     font-size: 1.1em;
 }
+
+.contactInfo {
+    margin: 0.1em auto 0 auto;
+    display: inline-block;
+
+    font-family: Inconsolata;
+    font-size: 1.3em;
+}
+
+.contactInfo p {
+    text-align: left;
+}
+
+
+.contactInfo a {
+    color: #f2f2f2;
+}
+
+/* font awesome icon tag */
+i {
+    color: #f2f2f2;
+}
+

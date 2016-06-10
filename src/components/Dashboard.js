@@ -2,6 +2,9 @@
 
 // TODO: autoprefixer is not working on .module.css files
 // in styles folder. fix the issue and remove all vendor prefixes
+
+// TODO: separate component for contact info
+// and email form for online communication
 import React from "react";
 import { Link } from "react-router";
 
@@ -21,7 +24,18 @@ export default React.createClass({
                         <Link to="/projects">Projects</Link>
                         <Link to="/">Resume</Link>
                     </nav>
-                    <p>Contact</p>
+                    <div >
+                        <div className={styles.contactInfo}>
+                            <p>
+                                <i className={"fa fa-phone fa-fw"} aria-hidden="true"></i>
+                                <a href="tel:">  +1 (647) 836-6256</a>
+                            </p>
+                            <p>
+                                <i className={"fa fa-envelope fa-fw"} aria-hidden="true"></i>
+                                <a href="mailto:"> rafizsooham@gmail.com</a>
+                            </p>
+                        </div>
+                    </div>
                 </div>
                 <div>
                     {this.props.children || ("")}
