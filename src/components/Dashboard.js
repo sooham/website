@@ -8,14 +8,16 @@ import styles from "styles/dashboard.module.css";
 export default React.createClass({
     render: function() {
         return (
-            <div>
-                <div>
-                    <Link to="/"><h1>Sooham Rafiz</h1></Link>
+            <div className={styles.appRoot}>
+                <div className={styles.indexNav}>
+                    <h1 id={styles.siteHeader}>
+                        <Link to="/">Sooham Rafiz</Link>
+                    </h1>
                     <nav>
-                        <Link to="/blog">Blog</Link>
-                        <Link to="/demos">Demos</Link>
-                        <Link to="/projects">Projects</Link>
-                        <Link to="/">Resume</Link>
+                        <Link to="/blog"><span>Blog</span></Link>
+                        <Link to="/demos"><span>Demos</span></Link>
+                        <Link to="/projects"><span>Projects</span></Link>
+                        <Link to="/"><span>Resume</span></Link>
                     </nav>
                     <p>Contact</p>
                 </div>

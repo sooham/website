@@ -1,16 +1,66 @@
-body {
-    background: #a6937c
+/* The parent div containing both
+ * sidebar and content lists
+ */
+.appRoot {
+    width: inherit;
+    height: inherit;
+    min-width: 100%;
+    min-height: 100vh;
+    max-width: 100%;
+    overflow: auto;
 }
 
-a {
-    text-decoration: none;
+/* The navbar when indexRoute is active */
+.indexNav {
+    width: 100%;
+    height: inherit;
+    min-width: 30%;
+    min-height: inherit;
+
+    /* To prevent child div's margins from moving
+     * this element
+     */
+    margin: -1px 0 0 0;
+    padding: 1px 0 0 0;
+
+    background: linear-gradient(top,#f24c3d 0%, #db2213 100%);
+
+    text-align: center;
 }
 
-/*
-#indexTitleCard {
-    font-size: 1.2em;
-    background: red;
+#siteHeader {
+    margin: 0.8em auto 0.2em auto;
+    display: block;
+
+    text-shadow: 0.08em 0.08em #6f1ca6;
+
+    font-size: 8em;
+    font-family: "VT323";
 }
-*/
+
+#siteHeader a {
+    color: #f2f2f2;
+}
 
 
+#siteHeader:hover {
+    text-shadow: 0.7vw 0.7vw #f2b705;
+}
+
+.indexNav nav {
+    display: inline-block;
+
+    font-family: Lato;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.indexNav nav a {
+    margin: 0.25em 0;
+    padding: 0.1em 0.2em;
+    display: block;
+
+    color: #f2f2f2;
+    text-align: left;
+
+}
