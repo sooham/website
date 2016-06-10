@@ -75,12 +75,14 @@
     content: "- ";
     font-family: Inconsolata;
     font-size: 1.1em;
+    opacity: .01;
 }
 
 .indexNav nav a:hover:before {
     content: "> ";
     font-family: Inconsolata;
     font-size: 1.1em;
+    opacity: 1;
 }
 
 .contactInfo {
