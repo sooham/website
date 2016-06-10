@@ -1,5 +1,7 @@
 // @flow
 
+// TODO: autoprefixer is not working on .module.css files
+// in styles folder. fix the issue and remove all vendor prefixes
 import React from "react";
 import { Link } from "react-router";
 
@@ -14,10 +16,10 @@ export default React.createClass({
                         <Link to="/">Sooham Rafiz</Link>
                     </h1>
                     <nav>
-                        <Link to="/blog"><span>Blog</span></Link>
-                        <Link to="/demos"><span>Demos</span></Link>
-                        <Link to="/projects"><span>Projects</span></Link>
-                        <Link to="/"><span>Resume</span></Link>
+                        <Link to="/blog">Blog</Link>
+                        <Link to="/demos">Demos</Link>
+                        <Link to="/projects">Projects</Link>
+                        <Link to="/">Resume</Link>
                     </nav>
                     <p>Contact</p>
                 </div>

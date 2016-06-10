@@ -23,7 +23,10 @@
     margin: -1px 0 0 0;
     padding: 1px 0 0 0;
 
-    background: linear-gradient(top,#f24c3d 0%, #db2213 100%);
+    background: linear-gradient(to bottom,#f24c3d 0%, #db2213 100%);
+    background: -webkit-linear-gradient(to bottom,#f24c3d 0%, #db2213 100%);
+    background: -moz-linear-gradient(to bottom,#f24c3d 0%, #db2213 100%);
+    background: -o-linear-gradient(to bottom,#f24c3d 0%, #db2213 100%);
 
     text-align: center;
 }
@@ -33,6 +36,10 @@
     display: block;
 
     text-shadow: 0.08em 0.08em #6f1ca6;
+    transition: all 0.15s linear;
+    -webkit-transition: all 0.15s linear;
+    -moz-transition: all 0.15s linear;
+    -o-transition: all 0.15s linear;
 
     font-size: 8em;
     font-family: "VT323";
@@ -44,7 +51,7 @@
 
 
 #siteHeader:hover {
-    text-shadow: 0.7vw 0.7vw #f2b705;
+    text-shadow: 0.08em 0.08em #f2b705;
 }
 
 .indexNav nav {
@@ -62,5 +69,16 @@
 
     color: #f2f2f2;
     text-align: left;
+}
 
+.indexNav nav a:before {
+    content: "- ";
+    font-family: Inconsolata;
+    font-size: 1.1em;
+}
+
+.indexNav nav a:hover:before {
+    content: "> ";
+    font-family: Inconsolata;
+    font-size: 1.1em;
 }
