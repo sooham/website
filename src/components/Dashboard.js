@@ -16,7 +16,10 @@ export default React.createClass({
             <div className={styles.appRoot}>
                 <div className={styles.indexNav}>
                     <h1 id={styles.siteHeader}>
-                        <Link to="/">Sooham Rafiz</Link>
+                        <div>
+                            <Link to="/">Sooham</Link>
+                            <Link to="/">Rafiz</Link>
+                        </div>
                     </h1>
                     <nav>
                         <Link to="/blog">Blog</Link>
@@ -37,8 +40,8 @@ export default React.createClass({
                         </div>
                     </div>
                 </div>
-                <div>
-                    {this.props.children || ("")}
+                <div className={styles.contentListContainer}>
+                    {this.props.children || (<div></div>)}
                 </div>
             </div>
         );
