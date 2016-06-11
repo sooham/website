@@ -1,3 +1,5 @@
+/* TODO: use url-loader in webpack */
+
 .contentList {
     width: 70%;
     height: 100%;
@@ -8,6 +10,8 @@
     position: absolute;
 
     z-index: 0;
+}
 
-    background: #0f3242;
+.contentList ul {
+    list-style: none;
 }
