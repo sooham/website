@@ -16,7 +16,7 @@ export default React.createClass({
     render: function() {
         return (
             <div className={styles.appRoot}>
-                <div className={styles.indexNav}>
+                <div id={styles.indexNav}>
                     <h1 id={styles.siteHeader}>
                         <div>
                             <Link to="/">Sooham</Link>

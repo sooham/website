@@ -3,6 +3,7 @@ import data from "utils/data";
 
 import ContentListView from "components/ContentListView";
 
+import styles from "styles/dashboard.module.css";
 
 // TODO: move to containers/
 // TODO: add proptypes and default props and what not
@@ -27,11 +28,17 @@ export default React.createClass({
 
     componentWillEnter: function(cb) {
         console.log("c will enter");
+        $(`#${styles.indexNav}`).animate(
+            {width: "30%"}, 400
+            );
         cb();
     },
 
     componentWillLeave: function(cb) {
         console.log("c will leave");
+        $(`#${styles.indexNav}`).animate(
+            {width: "100%"}, 400
+            );
         cb();
     },
 

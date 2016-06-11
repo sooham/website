@@ -8,7 +8,7 @@
 }
 
 /* The navbar when indexRoute is active */
-.indexNav {
+#indexNav {
     z-index: 1;
     width: 100%;
     min-width: 30%;
@@ -51,7 +51,7 @@
 }
 
 
-.indexNav nav {
+#indexNav nav {
     display: inline-block;
 
     font-family: Lato;
@@ -59,7 +59,7 @@
     font-size: 2em;
 }
 
-.indexNav nav a {
+#indexNav nav a {
     margin: 0.25em 0;
     padding: 0.1em 0.2em;
     display: block;
@@ -68,14 +68,14 @@
     text-align: left;
 }
 
-.indexNav nav a:before {
+#indexNav nav a:before {
     content: "- ";
     font-family: Inconsolata;
     font-size: 1.1em;
     opacity: .01;
 }
 
-.indexNav nav a:hover:before {
+#indexNav nav a:hover:before {
     content: "> ";
     font-family: Inconsolata;
     font-size: 1.1em;
