@@ -3,6 +3,7 @@
  */
 .appRoot {
     position: absolute;
+    overflow: auto;
     min-width: 100%;
     min-height: 100%;
 }
@@ -11,43 +12,48 @@
 #indexNav {
     z-index: 1;
     width: 100%;
+    height: 100%;
     min-width: 30%;
-    min-height: 100%;
     position: absolute;
 
-    background: linear-gradient(to bottom,#f24c3d 0%, #db2213 100%);
-    background: -webkit-linear-gradient(to bottom,#f24c3d 0%, #db2213 100%);
-    background: -moz-linear-gradient(to bottom,#f24c3d 0%, #db2213 100%);
-    background: -o-linear-gradient(to bottom,#f24c3d 0%, #db2213 100%);
+    background: linear-gradient(270deg, #f24c3d 0%, #db2213 100%);
+    background: -webkit-linear-gradient(270deg, #f24c3d 0%, #db2213 100%);
+    background: -moz-linear-gradient(270deg, #f24c3d 0%, #db2213 100%);
+    background: -o-linear-gradient(270deg, #f24c3d 0%, #db2213 100%);
 
     text-align: center;
 }
 
+
+/* TODO: site header is a h1 which has a div : fix pls */
 #siteHeader {
     margin: 0.4em auto 0.2em auto;
-    display: block;
 
-    text-shadow: 0.08em 0.08em #6f1ca6;
-    transition: all 0.15s linear;
-    -webkit-transition: all 0.15s linear;
-    -moz-transition: all 0.15s linear;
-    -o-transition: all 0.15s linear;
-
-    font-size: 7em;
+    font-size: 3.2em;
     font-family: "VT323";
+}
+
+#siteHeader h1 {
+    margin: 0;
+}
+
+#siteHeader a {
+    color: #f2f2f2;
 }
 
 #siteHeader div {
     display: inline-block;
+
+    text-shadow: 0.12em 0.12em #6f1ca6;
+
+    transition: all 0.15s linear;
+    -webkit-transition: all 0.15s linear;
+    -moz-transition: all 0.15s linear;
+    -o-transition: all 0.15s linear;
 }
 
 #siteHeader div:hover {
-    text-shadow: 0.08em 0.08em #f2b705;
-}
-
-#siteHeader a {
-    display: block;
-    color: #f2f2f2;
+    text-shadow: 0.12em 0.12em #f2b705;
 }
 
 
@@ -82,6 +88,7 @@
     opacity: 1;
 }
 
+/* put in its own component */
 .contactInfo {
     margin: 0.1em auto 0 auto;
     display: inline-block;

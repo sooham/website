@@ -21,9 +21,15 @@ export default React.createClass({
         };
     },
 
-    componentWillAppear: function(cb) {
-        console.log("c will appear");
-        cb();
+    // TODO: did a quick and dirty fix to enable animation when user
+    // does not start at /, clean this up by including a state in this component
+    // should these be with the parent?
+
+    componentDidAppear: function (cb) {
+        console.log("will appear");
+        $(`#${styles.indexNav}`).animate(
+            {width: "30%"}, 400
+            );
     },
 
     componentWillEnter: function(cb) {

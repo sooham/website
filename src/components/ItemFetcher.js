@@ -18,21 +18,6 @@ export default React.createClass({
         };
     },
 
-    componentWillAppear: function(cb) {
-        console.log("i will appear");
-        cb();
-    },
-
-    componentWillEnter: function(cb) {
-        console.log("i will enter");
-        cb();
-    },
-
-    componentWillLeave: function(cb) {
-        console.log("i will leave");
-        cb();
-    },
-
     componentDidMount: function() {
         console.log("itemlist mounted");
         const { category, item } = this.props.params;

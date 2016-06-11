@@ -89,6 +89,16 @@ const data = [
             { title: "Task", link: "/demos/task" },
             { title: "React Xray", link: "/demos/xray" },
             { title: "Archimedes", link: "https://www.archimedes.com" },
+            { title: "Drake lyrics analysis", link: "/demos/rubberduck" },
+            { title: "more stuff", link: "/demos/friday" },
+            { title: "a nanosat", link: "/demos/pong" },
+            { title: "a depression treatment app", link: "/demos/task" },
+            { title: "apples and oranges", link: "/demos/xray" },
+            { title: "orange is not the new black", link: "https://www.archimedes.com" },
+            { title: "obamamon", link: "/demos/pong" },
+            { title: "pokemon vr world", link: "/demos/task" },
+            { title: "yoyo", link: "/demos/xray" },
+            { title: "lolz", link: "https://www.archimedes.com" },
         ]
     }
 ];

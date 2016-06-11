@@ -12,22 +12,32 @@ import TransitionGroup from "react/lib/ReactTransitionGroup";
 
 import styles from "styles/dashboard.module.css";
 
+import activeLink from "styles/activeLink";
+
 export default React.createClass({
     render: function() {
         return (
             <div className={styles.appRoot}>
                 <div id={styles.indexNav}>
-                    <h1 id={styles.siteHeader}>
+                    <div id={styles.siteHeader}>
                         <div>
-                            <Link to="/">Sooham</Link>
-                            <Link to="/">Rafiz</Link>
+                            <h1><Link to="/">Sooham</Link></h1>
+                            <h1><Link to="/">Rafiz</Link></h1>
                         </div>
-                    </h1>
+                    </div>
                     <nav>
-                        <Link to="/blog">Blog</Link>
-                        <Link to="/demos">Demos</Link>
-                        <Link to="/projects">Projects</Link>
-                        <Link to="/">Resume</Link>
+                        <Link to="/blog" activeStyle={activeLink} >
+                            Blog
+                        </Link>
+                        <Link to="/demos" activeStyle={activeLink} >
+                            Demos
+                        </Link>
+                        <Link to="/projects" activeStyle={activeLink} >
+                            Projects
+                        </Link>
+                        <Link to="/" activeStyle={activeLink} >
+                            Resume
+                        </Link>
                     </nav>
                     <div >
                         <div className={styles.contactInfo}>
