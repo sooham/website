@@ -11,13 +11,30 @@ export default React.createClass({
             "item": data.lookupItem(category, item)
         });
     },
+
     getInitialState: function() {
         return {
             item: {}
         };
     },
 
+    componentWillAppear: function(cb) {
+        console.log("i will appear");
+        cb();
+    },
+
+    componentWillEnter: function(cb) {
+        console.log("i will enter");
+        cb();
+    },
+
+    componentWillLeave: function(cb) {
+        console.log("i will leave");
+        cb();
+    },
+
     componentDidMount: function() {
+        console.log("itemlist mounted");
         const { category, item } = this.props.params;
         this.updateItem(category, item);
     },
@@ -28,6 +45,8 @@ export default React.createClass({
     },
 
     render: function() {
-        return (<ItemView {...this.props.params} item={this.state.item}/>);
+        return (
+            <ItemView {...this.props.params} item={this.state.item}/>
+        );
     }
 });

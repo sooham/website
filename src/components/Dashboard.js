@@ -8,6 +8,8 @@
 import React from "react";
 import { Link } from "react-router";
 
+import TransitionGroup from "react/lib/ReactTransitionGroup";
+
 import styles from "styles/dashboard.module.css";
 
 export default React.createClass({
@@ -31,18 +33,18 @@ export default React.createClass({
                         <div className={styles.contactInfo}>
                             <p>
                                 <i className={"fa fa-phone fa-fw"} aria-hidden="true"></i>
-                                <a href="tel:">  +1 (647) 836-6256</a>
+                                <a href="tel:6478366256">  +1 (647) 836-6256</a>
                             </p>
                             <p>
                                 <i className={"fa fa-envelope fa-fw"} aria-hidden="true"></i>
-                                <a href="mailto:"> rafizsooham@gmail.com</a>
+                                <a href="mailto:rafizsooham@gmail.com"> rafizsooham@gmail.com</a>
                             </p>
                         </div>
                     </div>
                 </div>
-                <div className={styles.contentListContainer}>
-                    {this.props.children || (<div></div>)}
-                </div>
+                <TransitionGroup>
+                    {this.props.children || null }
+                </TransitionGroup>
             </div>
         );
     }

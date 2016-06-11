@@ -1,0 +1,9 @@
+.contentList {
+    z-index: 0;
+    width: 70%;
+    min-height: 100%;
+    max-width: 70%;
+    position: absolute;
+    display: block;
+    margin-left: 30%;
+}
