@@ -13,11 +13,11 @@ export default React.createClass({
                     {
                         this.props.itemList.map(function(item, index) {
                             return (
-                                <li key={index}>
-                                    <Link to={`${category}/${item}`}>
+                                <Link key={index} to={`${category}/${item}`}>
+                                    <li>
                                         <h2>{item}</h2>
-                                    </Link>
-                                </li>
+                                    </li>
+                                </Link>
                             );
                         })
                     }

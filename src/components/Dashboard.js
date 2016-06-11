@@ -35,7 +35,7 @@ export default React.createClass({
                         <Link to="/projects" activeStyle={activeLink} >
                             Projects
                         </Link>
-                        <Link to="/" activeStyle={activeLink} >
+                        <Link to="/resume" activeStyle={activeLink} >
                             Resume
                         </Link>
                     </nav>
@@ -52,7 +52,7 @@ export default React.createClass({
                         </div>
                     </div>
                 </div>
-                <TransitionGroup>
+                <TransitionGroup transitionEnterTimeout={400} transitionEnterTimeout={400}>
                     {this.props.children || null }
                 </TransitionGroup>
             </div>
