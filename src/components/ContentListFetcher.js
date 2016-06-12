@@ -30,7 +30,7 @@ export default React.createClass({
     // seems like the most effective way to fix this issue
 
     componentWillAppear: function (cb) {
-        console.log("will appear");
+        console.log("c will appear");
         $(document).ready(() => {
             $(`#${styles.indexNav}`).width("30%");
             cb();

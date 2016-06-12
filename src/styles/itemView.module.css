@@ -1,0 +1,49 @@
+.item {
+    width: 70%;
+    height: 100%;
+    min-height: 100%;
+    max-width: 70%;
+    margin-left: 30%;
+    overflow: scroll;
+    position: absolute;
+
+    z-index: 0;
+}
+
+.item article {
+    min-height: 100%;
+    min-width: 96%;
+    margin: 1em;
+    padding: 2em;
+    position: absolute;
+    box-sizing: border-box;
+
+    background: white;
+}
+
+.backLink {
+    margin-bottom: 2em;
+
+    font-family: Lato;
+    font-size: 1.4em;
+}
+
+.itemHeader h2 {
+    margin: 0 0 0.4em 0;
+
+    font-size: 3em;
+    font-family: VT323;
+
+    border-bottom: 9px dotted #f2b705;
+}
+
+.itemHeader p {
+    font-family: Ubuntu;
+    margin: 0;
+}
+
+.itemBody {
+    margin: 3em 2em 0 2em;
+    font-size: 1.1em;
+    font-family: Lato;
+}

@@ -9,16 +9,18 @@ export default React.createClass({
         const item = this.props.item;
         const category = this.props.category;
         return (
-            <div>
-                <div>
-                    <Link to={`/${category}`}>Back</Link>
-                </div>
-                <header>
-                    <h2>{item.title}</h2>
-                    <p>{(item.date || item.from) || ""}</p>
-                </header>
+            <div className={styles.item}>
                 <article>
-                    {item.content || ""}
+                    <div className={styles.backLink}>
+                        <Link to={`/${category}`}>Back</Link>
+                    </div>
+                    <header className={styles.itemHeader}>
+                        <h2>{item.title}</h2>
+                        <p>{(item.date || item.from) || ""}</p>
+                    </header>
+                    <section className={styles.itemBody}>
+                        {item.content || ""}
+                    </section>
                 </article>
             </div>
         );
