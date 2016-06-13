@@ -18,27 +18,29 @@ export default React.createClass({
     render: function() {
         return (
             <div className={styles.appRoot}>
-                <div id={styles.indexNav}>
+                <div id="indexNav">
                     <div id={styles.siteHeader}>
                         <div>
                             <h1><Link to="/">Sooham</Link></h1>
                             <h1><Link to="/">Rafiz</Link></h1>
                         </div>
                     </div>
-                    <nav>
-                        <Link to="/blog" activeStyle={activeLink} >
-                            Blog
-                        </Link>
-                        <Link to="/demos" activeStyle={activeLink} >
-                            Demos
-                        </Link>
-                        <Link to="/projects" activeStyle={activeLink} >
-                            Projects
-                        </Link>
-                        <Link to="/resume" activeStyle={activeLink} >
-                            Resume
-                        </Link>
-                    </nav>
+                    <div>
+                        <nav>
+                            <Link to="/blog" activeStyle={activeLink} >
+                                Blog
+                            </Link>
+                            <Link to="/demos" activeStyle={activeLink} >
+                                Demos
+                            </Link>
+                            <Link to="/projects" activeStyle={activeLink} >
+                                Projects
+                            </Link>
+                            <Link to="/resume" activeStyle={activeLink} >
+                                Resume
+                            </Link>
+                        </nav>
+                    </div>
                     <div >
                         <div className={styles.contactInfo}>
                             <p>
@@ -52,7 +54,12 @@ export default React.createClass({
                         </div>
                     </div>
                 </div>
-                <TransitionGroup transitionEnterTimeout={400} transitionEnterTimeout={400}>
+                <TransitionGroup
+                    transitionEnterTimeout={400}
+                    transitionEnterTimeout={400}
+                    component="div"
+                    id="displayContent"
+                >
                     {this.props.children || null }
                 </TransitionGroup>
             </div>

@@ -8,28 +8,19 @@
     min-height: 100%;
 }
 
-/* The navbar when indexRoute is active */
-#indexNav {
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    min-width: 30%;
-    position: absolute;
-
+/* Styles for mobile and desktop */
+:global(#indexNav) {
     background: linear-gradient(270deg, #f24c3d 0%, #db2213 100%);
     background: -webkit-linear-gradient(270deg, #f24c3d 0%, #db2213 100%);
     background: -moz-linear-gradient(270deg, #f24c3d 0%, #db2213 100%);
     background: -o-linear-gradient(270deg, #f24c3d 0%, #db2213 100%);
-
-    text-align: center;
 }
 
+:global(#indexNav) a, i {
+    color: #f2f2f2;
+}
 
-/* TODO: site header is a h1 which has a div : fix pls */
 #siteHeader {
-    margin: 0.4em auto 0.2em auto;
-
-    font-size: 3.2em;
     font-family: "VT323";
 }
 
@@ -37,76 +28,121 @@
     margin: 0;
 }
 
-#siteHeader a {
-    color: #f2f2f2;
-}
-
 #siteHeader div {
-    display: inline-block;
-
     text-shadow: 0.12em 0.12em #6f1ca6;
-
-    transition: all 0.15s linear;
-    -webkit-transition: all 0.15s linear;
-    -moz-transition: all 0.15s linear;
-    -o-transition: all 0.15s linear;
 }
 
-#siteHeader div:hover {
-    text-shadow: 0.12em 0.12em #f2b705;
-}
-
-
-#indexNav nav {
-    display: inline-block;
-
+:global(#indexNav) nav {
     font-family: Lato;
     font-weight: bold;
-    font-size: 2em;
-}
-
-#indexNav nav a {
-    margin: 0.25em 0;
-    padding: 0.1em 0.2em;
-    display: block;
-
-    color: #f2f2f2;
-    text-align: left;
-}
-
-#indexNav nav a:before {
-    content: "- ";
-    font-family: Inconsolata;
-    font-size: 1.1em;
-    opacity: .01;
-}
-
-#indexNav nav a:hover:before {
-    content: "> ";
-    font-family: Inconsolata;
-    font-size: 1.1em;
-    opacity: 1;
-}
-
-/* put in its own component */
-.contactInfo {
-    margin: 0.1em auto 0 auto;
-    display: inline-block;
-
-    font-family: Inconsolata;
-    font-size: 1.3em;
-}
-
-.contactInfo p {
-    text-align: left;
 }
 
 
-.contactInfo a {
-    color: #f2f2f2;
+
+/* mobile only */
+@media all and (max-width: 767px) {
+    :global(#indexNav) {
+        width: 100%;
+        text-align: center;
+        overflow: auto;
+    }
+
+    #siteHeader {
+        margin: 1em 2em 1em 0.5em;
+        float: left;
+    }
+
+    :global(#indexNav) nav {
+        display: inline-block;
+    }
+
+    :global(#indexNav) nav a {
+        margin: 0 3vw;
+        font-size: 4vw;
+    }
 }
 
-/* font awesome icon tag */
-i {
-    color: #f2f2f2;
+
+/* desktop styles */
+@media all and (min-width: 768px) {
+    /* The navbar when indexRoute is active */
+    :global(#indexNav) {
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        min-width: 30%;
+        position: absolute;
+        overflow: auto;
+
+        text-align: center;
+    }
+
+
+    /* TODO: site header is a h1 which has a div : fix pls */
+    #siteHeader {
+        display: inline-block;
+        margin: 0.4em auto 0.2em auto;
+
+        font-size: 5vw;
+    }
+
+    #siteHeader div {
+        display: inline-block;
+
+        transition: all 0.15s linear;
+        -webkit-transition: all 0.15s linear;
+        -moz-transition: all 0.15s linear;
+        -o-transition: all 0.15s linear;
+    }
+
+    #siteHeader div:hover {
+        text-shadow: 0.12em 0.12em #f2b705;
+    }
+
+
+    :global(#indexNav) nav {
+        display: inline-block;
+
+    }
+
+    :global(#indexNav) nav a {
+        margin: 0.25em 0;
+        padding: 0.1em 0.2em;
+        display: block;
+
+        text-align: left;
+
+        font-size: 2.6vw;
+    }
+
+    :global(#indexNav) nav a:before {
+        content: "- ";
+        font-family: Inconsolata;
+        font-size: 1.1em;
+        opacity: .01;
+    }
+
+    :global(#indexNav) nav a:hover:before {
+        content: "> ";
+        font-family: Inconsolata;
+        font-size: 1.1em;
+        opacity: 1;
+    }
+
+    /* put in its own component */
+    .contactInfo {
+        margin: 0 auto;
+        display: inline-block;
+
+        font-family: Inconsolata;
+        font-size: 1.8vw;
+    }
+
+    .contactInfo p {
+        text-align: left;
+    }
+
+    .contactInfo p * {
+        color: #f2f2f2;
+    }
 }

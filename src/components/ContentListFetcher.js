@@ -30,29 +30,35 @@ export default React.createClass({
     // seems like the most effective way to fix this issue
 
     componentWillAppear: function (cb) {
-        console.log("c will appear");
         $(document).ready(() => {
-            $(`#${styles.indexNav}`).width("30%");
+            if (window.matchMedia("(min-width: 768px)").matches) {
+                console.log("not mobile contract");
+                $("#indexNav").width("30%");
+            }
             cb();
         });
     },
 
     componentWillEnter: function(cb) {
-        console.log("c will enter");
         $(document).ready(() => {
-            $(`#${styles.indexNav}`).animate(
-                {width: "30%"}, 400
-                );
+            if (window.matchMedia("(min-width: 768px)").matches) {
+                console.log("not mobile contract");
+                $("#indexNav").animate(
+                    {width: "30%"}, 400
+                    );
+            }
             cb();
         });
     },
 
     componentWillLeave: function(cb) {
-        console.log("c will leave");
         $(document).ready(() => {
-            $(`#${styles.indexNav}`).animate(
-                {width: "100%"}, 400
-                );
+            if (window.matchMedia("(min-width: 768px)").matches) {
+                console.log("not mobile expand");
+                $("#indexNav").animate(
+                    {width: "100%"}, 400
+                    );
+            }
             cb();
         });
     },
@@ -62,7 +68,6 @@ export default React.createClass({
     },
 
     componentDidMount: function() {
-        console.log("contentlist mounted");
         this.updateItemList(this.props.params.category);
     },
 

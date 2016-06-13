@@ -1,50 +1,49 @@
 /* TODO: use url-loader in webpack */
 /* What if google fonts do not load? */
 
-.contentList {
-    width: 70%;
-    height: 100%;
-    min-height: 100%;
-    max-width: 70%;
-    margin-left: 30%;
-    overflow: scroll;
-    position: absolute;
+@media all and (min-width: 768px) {
+    .contentList {
+        width: 70%;
+        height: 100%;
+        min-height: 100%;
+        max-width: 70%;
+        left: 30%;
+        overflow: scroll;
+        position: absolute;
 
-    z-index: 0;
-}
+        z-index: 0;
+    }
 
-.contentList ul {
-    margin: 1em;
-    padding: 0;
+    .contentList ul {
+        margin: 2%;
+        padding: 0;
 
-    list-style: none;
-}
+        list-style: none;
+    }
 
-.contentList ul li {
-    margin: 0.5em 0;
-    padding: 0.2em 1em;
+    .contentList ul li {
+        margin: 1.5% 0;
+        padding: 0.7% 1%;
 
-    /*
-        background: #54d7a6;
-    */
+        background: #5fa536; /* Old browsers */
+        background: -moz-linear-gradient(-45deg, #5fa536 0%, #63aa55 25%, #48934a 25%, #48934a 25%, #48934a 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(-45deg, #5fa536 0%,#63aa55 25%,#48934a 25%,#48934a 25%,#48934a 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(135deg, #5fa536 0%,#63aa55 25%,#48934a 25%,#48934a 25%,#48934a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5fa536', endColorstr='#48934a',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
-    background: #5fa536; /* Old browsers */
-    background: -moz-linear-gradient(-45deg, #5fa536 0%, #63aa55 25%, #48934a 25%, #48934a 25%, #48934a 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg, #5fa536 0%,#63aa55 25%,#48934a 25%,#48934a 25%,#48934a 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(135deg, #5fa536 0%,#63aa55 25%,#48934a 25%,#48934a 25%,#48934a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5fa536', endColorstr='#48934a',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+        font-family: "VT323";
+        font-size: 1.9vw;
 
-    font-family: "VT323";
-    font-size: 1.5em;
+        transition: all 0.16s ease-out;
+    }
 
-    transition: all 0.16s ease-out;
-}
+    .contentList ul a {
+        display: block;
+        color: white;
+        text-shadow: 0.08em 0.08em 1px #3e606f;
+    }
 
-.contentList ul li:hover {
-    background: #ff958d;
-}
-
-.contentList ul a {
-    color: white;
-    text-shadow: 0.08em 0.08em 1px #3e606f;
+    .contentList ul li:hover {
+        background: #ff958d;
+    }
 }

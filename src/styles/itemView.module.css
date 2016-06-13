@@ -1,49 +1,49 @@
-.item {
-    width: 70%;
-    height: 100%;
-    min-height: 100%;
-    max-width: 70%;
-    margin-left: 30%;
-    overflow: scroll;
-    position: absolute;
+@media all and (min-width: 768px) {
+    .item {
+        width: 70%;
+        height: 100%;
+        min-height: 100%;
+        max-width: 70%;
+        left: 30%;
+        overflow: scroll;
+        position: absolute;
 
-    z-index: 0;
-}
+        z-index: 0;
+    }
 
-.item article {
-    min-height: 100%;
-    min-width: 96%;
-    margin: 1em;
-    padding: 2em;
-    position: absolute;
-    box-sizing: border-box;
+    .item article {
+        min-height: 100%;
+        margin: 2.1%;
+        padding: 4%;
+        position: relative;
+        box-sizing: border-box;
+        background: white;
+    }
 
-    background: white;
-}
+    .backLink {
+        margin-bottom: 2em;
 
-.backLink {
-    margin-bottom: 2em;
+        font-family: Lato;
+        font-size: 1.4em;
+    }
 
-    font-family: Lato;
-    font-size: 1.4em;
-}
+    .itemHeader h2 {
+        margin: 0 0 0.4em 0;
 
-.itemHeader h2 {
-    margin: 0 0 0.4em 0;
+        font-size: 3em;
+        font-family: VT323;
 
-    font-size: 3em;
-    font-family: VT323;
+        border-bottom: 9px dotted #f2b705;
+    }
 
-    border-bottom: 9px dotted #f2b705;
-}
+    .itemHeader p {
+        font-family: Ubuntu;
+        margin: 0;
+    }
 
-.itemHeader p {
-    font-family: Ubuntu;
-    margin: 0;
-}
-
-.itemBody {
-    margin: 3em 2em 0 2em;
-    font-size: 1.1em;
-    font-family: Lato;
+    .itemBody {
+        margin: 3em 2em 0 2em;
+        font-size: 1.1em;
+        font-family: Lato;
+    }
 }
