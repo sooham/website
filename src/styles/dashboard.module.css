@@ -37,6 +37,10 @@
     font-weight: bold;
 }
 
+.contactInfo {
+    font-family: Inconsolata;
+}
+
 
 
 /* mobile only */
@@ -48,8 +52,8 @@
     }
 
     #siteHeader {
-        margin: 1em 2em 1em 0.5em;
-        float: left;
+        margin: 0.3em 0 0.5em 0;
+        font-size: 4vw;
     }
 
     :global(#indexNav) nav {
@@ -59,6 +63,12 @@
     :global(#indexNav) nav a {
         margin: 0 3vw;
         font-size: 4vw;
+    }
+
+    .contactInfo p {
+        display: inline-block;
+        font-size: 0.9em;
+        margin: 1em;
     }
 }
 
@@ -134,7 +144,6 @@
         margin: 0 auto;
         display: inline-block;
 
-        font-family: Inconsolata;
         font-size: 1.8vw;
     }
 
