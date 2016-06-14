@@ -1,29 +1,17 @@
 /* TODO: use url-loader in webpack */
 /* What if google fonts do not load? */
 
-@media all and (min-width: 768px) {
-    .contentList {
-        width: 70%;
-        height: 100%;
-        min-height: 100%;
-        max-width: 70%;
-        left: 30%;
-        overflow: scroll;
-        position: absolute;
+/* mobile and desktop */
+.contentList {
+    overflow: scroll;
+}
 
-        z-index: 0;
-    }
+.contentList ul {
+    list-style: none;
+    padding: 0;
+}
 
-    .contentList ul {
-        margin: 2%;
-        padding: 0;
-
-        list-style: none;
-    }
-
-    .contentList ul li {
-        margin: 1.5% 0;
-        padding: 0.7% 1%;
+.contentList ul li {
 
         background: #5fa536; /* Old browsers */
         background: -moz-linear-gradient(-45deg, #5fa536 0%, #63aa55 25%, #48934a 25%, #48934a 25%, #48934a 100%); /* FF3.6-15 */
@@ -32,15 +20,53 @@
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5fa536', endColorstr='#48934a',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
         font-family: "VT323";
+}
+
+.contentList ul a {
+    display: block;
+    color: white;
+    text-shadow: 0.08em 0.08em 1px #3e606f;
+}
+
+/* mobile only */
+@media all and (max-width: 767px) {
+    .contentList ul {
+        margin: 0;
+    }
+
+    .contentList ul li {
+        font-size: 4vw;
+    }
+
+    .contentList ul a {
+        margin: 0.2em 0;
+        padding: 2% 3%;
+    }
+}
+
+/* desktop only */
+@media all and (min-width: 768px) {
+    .contentList {
+        width: 70%;
+        max-width: 70%;
+        left: 30%;
+        position: absolute;
+        z-index: 0;
+    }
+
+    .contentList ul {
+        margin: 2%;
+    }
+
+    .contentList ul li {
         font-size: 1.9vw;
 
         transition: all 0.16s ease-out;
     }
 
     .contentList ul a {
-        display: block;
-        color: white;
-        text-shadow: 0.08em 0.08em 1px #3e606f;
+        margin: 1.5% 0;
+        padding: 0.7% 1%;
     }
 
     .contentList ul li:hover {
