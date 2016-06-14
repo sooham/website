@@ -1,49 +1,90 @@
-@media all and (min-width: 768px) {
+/* mobile and desktop */
+.item {
+    height: 100%;
+    position: absolute;
+}
+
+.item article {
+    min-height: 100%;
+    background: white;
+
+    padding: 4%;
+}
+
+.backLink {
+    font-family: Lato;
+}
+
+.itemHeader h2 {
+    font-family: VT323;
+    border-bottom: 0.2em dotted #f2b705;
+}
+
+.itemHeader p {
+    font-family: Ubuntu;
+    margin: 0;
+}
+
+.itemBody {
+    font-family: Lato;
+
+}
+
+/* mobile only */
+@media all and (max-width: 767px) {
     .item {
-        width: 70%;
-        height: 100%;
-        min-height: 100%;
-        max-width: 70%;
-        left: 30%;
-        overflow: scroll;
-        position: absolute;
-
-        z-index: 0;
-    }
-
-    .item article {
-        min-height: 100%;
-        margin: 2.1%;
-        padding: 4%;
-        position: relative;
-        box-sizing: border-box;
-        background: white;
+        border-top: 2px solid black;
     }
 
     .backLink {
-        margin-bottom: 2em;
-
-        font-family: Lato;
-        font-size: 1.4em;
+        margin-bottom: 3%;
+        font-size: 1.5em;
     }
 
     .itemHeader h2 {
         margin: 0 0 0.4em 0;
 
-        font-size: 3em;
-        font-family: VT323;
-
-        border-bottom: 9px dotted #f2b705;
-    }
-
-    .itemHeader p {
-        font-family: Ubuntu;
-        margin: 0;
+        font-size: 2em;
     }
 
     .itemBody {
-        margin: 3em 2em 0 2em;
+        margin: 2em 2% 0 2%;
         font-size: 1.1em;
-        font-family: Lato;
+    }
+}
+
+/* desktop only */
+@media all and (min-width: 768px) {
+    .item {
+        width: 70%;
+        max-width: 70%;
+        left: 30%;
+        overflow: scroll;
+
+        z-index: 0;
+    }
+
+    .item article {
+        margin: 2.1%;
+        position: relative;
+        box-sizing: border-box;
+    }
+
+    .backLink {
+        margin-bottom: 1em;
+
+        font-size: 2.7vw;
+    }
+
+    .itemHeader h2 {
+        margin: 0 0 0.4em 0;
+
+        font-size: 4.3vw;
+    }
+
+
+    .itemBody {
+        margin: 3em 2em 0 2em;
+        font-size: 2vw;
     }
 }

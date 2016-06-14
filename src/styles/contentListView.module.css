@@ -39,7 +39,7 @@
     }
 
     .contentList ul a {
-        margin: 0.2em 0;
+        margin: 1.3% 0;
         padding: 2% 3%;
     }
 }
@@ -48,6 +48,7 @@
 @media all and (min-width: 768px) {
     .contentList {
         width: 70%;
+        height: 100%;
         max-width: 70%;
         left: 30%;
         position: absolute;
