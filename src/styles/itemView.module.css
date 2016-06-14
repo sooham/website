@@ -33,6 +33,8 @@
 /* mobile only */
 @media all and (max-width: 767px) {
     .item {
+        width: 100%;
+
         border-top: 2px solid black;
     }
 
