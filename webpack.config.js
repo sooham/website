@@ -29,10 +29,10 @@ var devPlugin = new webpack.DefinePlugin({
 var cssModulesNames = (
     isDev ? "[path][name]__[local]__" : "") + "[hash:base64:5]";
 
+// css extraction
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 var config = {
-    // multiple entry points
-    // home -> portfolio {home,blog,projects,demos,resume}
-    // admin -> editor {editor}
     entry: path.join(src, "index.js"),
 
     output: {
@@ -51,18 +51,24 @@ var config = {
             {
                 test: /\.module\.css$/,
                 include: src,
-                loader: "style!css-loader?modules&localIdentName="
-                    + cssModulesNames + "!postcss"
+                loader: ExtractTextPlugin.extract(
+                    "style",
+                    "css-loader?modules&localIdentName=" + cssModulesNames,
+                    "postcss"
+                )
             },
             {
                 test: /^[^\.]*\.css$/,
-                loader: "style!css-loader?modules&localIdentName="
-                    + cssModulesNames + "!postcss"
+                loader: ExtractTextPlugin.extract(
+                    "style",
+                    "css-loader?modules&localIdentName=" + cssModulesNames,
+                    "postcss"
+                )
             },
             {
                 test: /\.css$/,
                 include: modules,
-                loader: "style!css"
+                loader: ExtractTextPlugin.extract("style", "css")
             },
             {
                 test: /\.(png|ico|tiff|pdf)$/,
@@ -80,7 +86,7 @@ var config = {
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin()
-    ]).concat([devPlugin]),
+    ]).concat([devPlugin, new ExtractTextPlugin("styles/[name].css")]),
 
 
     // add .jsx extension for JSX files
@@ -117,7 +123,6 @@ var config = {
         require("precss")({})
     ],
 
-    // css modules config
 };
 
 module.exports = config;

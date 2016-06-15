@@ -1,6 +1,6 @@
 // @flow
 
-// config file for the production build using the
+// config file for the production
 // express server
 var webpack = require("webpack");
 
@@ -19,10 +19,18 @@ var devPlugin = new webpack.DefinePlugin({
     __DEV__: JSON.stringify(isDev)
 });
 
+// css modules naming scheme
+var cssModulesNames = (
+    isDev ? "[path][name]__[local]__" : "") + "[hash:base64:5]";
+
+// css extraction (necessary for isomorphic behaviour)
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 var config = {
-    entry: path.resolve("server.js"),
+    entry: path.join(__dirname, "server.js"),
 
     output: {
+        path: __dirname,
         filename: "server.bundle.js"
     },
 
@@ -31,7 +39,8 @@ var config = {
     // rendering of React components
     target: "node",
 
-    externals: fs.readdirSync(modules).reduce(
+    externals: fs.readdirSync(modules)
+        .concat(["react-dom/server", "react/addons"]).reduce(
         (ext, mod) => {
             ext[mod] = "commonjs " + mod;
             return ext;
@@ -47,11 +56,34 @@ var config = {
             {
                 test: /\.jsx?$/,
                 loader:"babel",
-                include: /node_modules/
+                exclude: /node_modules/
+            },
+            {
+                test: /\.module\.css$/,
+                include: src,
+                loader: ExtractTextPlugin.extract(
+                    "style",
+                    "css-loader?modules&localIdentName=" + cssModulesNames,
+                    "postcss"
+                )
+            },
+            {
+                test: /^[^\.]*\.css$/,
+                loader: ExtractTextPlugin.extract(
+                    "style",
+                    "css-loader?modules&localIdentName=" + cssModulesNames,
+                    "postcss"
+                )
             },
             {
                 test: /\.css$/,
-                loader: "style!css!postcss"
+                include: modules,
+                loader: ExtractTextPlugin.extract("style", "css")
+            },
+            {
+                test: /\.(png|ico|tiff|pdf)$/,
+                include: src,
+                loader: "url?limit=10000"
             }
         ]
     },
@@ -62,15 +94,19 @@ var config = {
         alias: {
             components: path.join(src, "components"),
             containers: path.join(src, "containers"),
+            styles: path.join(src, "styles"),
             utils: path.join(src, "utils"),
-            routes: path.join(src, "routes")
+            routes: path.join(src, "routes"),
+            modules: modules
         },
         extensions: ["", ".js", ".jsx", ".webpack.js"]
     },
 
-    plugins: (isDev? [] : []).concat([devPlugin]),
+    plugins: (isDev ? [] : []).concat([devPlugin, new ExtractTextPlugin("public/styles/[name].css")]),
 
-    // postcss config (propbably won't be used on serverside)
+    // postcss config
+    // it is possible to modify these postcss Processors
+    // through the object argument.
     postcss: [
         require("autoprefixer")({}),
         require("cssnano")({}),
