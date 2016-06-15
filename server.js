@@ -18,14 +18,16 @@ app.use(Express.static(path.join(__dirname, "public")));
 // so that browserHistory works
 app.get("*", function (req, res) {
     // match routes to req.url
-    match({routes: routes, location: req.url}, (err, redirect, props) => {
+    match({routes: indexRoutes, location: req.url}, (err, redirect, props) => {
         if (err) {
             res.status(500).send(err.message);
         } else if (redirect) {
             res.redirect(redirect.pathname + redirect.search);
         } else if (props) {
+            console.log("matching with route: " + req.url);
             const appHtml = renderToString(<RouterContext {...props} />);
-            renderPage(appHtml);
+            console.log("finished");
+            res.status(200).send(renderPage(appHtml));
         } else {
             // 404
             res.status(404).send("Not Found");
@@ -53,7 +55,7 @@ function renderPage(appHtml) {
             <body>
                 <div id="app">${appHtml}</div>
                 <script src="/bundle.js" type="text/javascript"></script>
-                <script src="https://use.fontawesome.com/ba2386bece.js" type="text/javascript"></script>
+                <script src="https://use.fontawesome.com/ba2386bece.js" type="text/javascript" async></script>
             </body>
         </html>
             `;

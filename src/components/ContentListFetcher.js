@@ -11,7 +11,9 @@ import styles from "styles/dashboard.module.css";
 // TODO: add proptypes and default props and what not
 export default React.createClass({
     updateItemList: function(category) {
-        const itemList = Object.keys(data.lookupCategory(category).itemsMap);
+        const cat = data.lookupCategory(category);
+        const itemList = cat ? Object.keys(cat.itemsMap): ["nothing"];
+
         this.setState({
             items: itemList
         });
@@ -32,7 +34,6 @@ export default React.createClass({
     componentWillAppear: function (cb) {
         $(document).ready(() => {
             if (window.matchMedia("(min-width: 768px)").matches) {
-                console.log("not mobile contract");
                 $("#indexNav").width("30%");
             }
             cb();
@@ -42,7 +43,6 @@ export default React.createClass({
     componentWillEnter: function(cb) {
         $(document).ready(() => {
             if (window.matchMedia("(min-width: 768px)").matches) {
-                console.log("not mobile contract");
                 $("#indexNav").animate(
                     {width: "30%"}, 400
                     );
@@ -54,7 +54,6 @@ export default React.createClass({
     componentWillLeave: function(cb) {
         $(document).ready(() => {
             if (window.matchMedia("(min-width: 768px)").matches) {
-                console.log("not mobile expand");
                 $("#indexNav").animate(
                     {width: "100%"}, 400
                     );
@@ -72,6 +71,7 @@ export default React.createClass({
     },
 
     render: function() {
+        console.log("rendering: " + this.props.params.category);
         return (
             <ContentListView {...this.props.params} itemList={this.state.items}/>
         );

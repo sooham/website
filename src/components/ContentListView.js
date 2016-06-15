@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router";
+import Link from "react-router/lib/Link";
 
 import styles from "styles/contentListView.module.css";
 
@@ -7,6 +7,7 @@ export default React.createClass({
 
     render: function() {
         const category = this.props.category;
+        console.log("rendering " + category);
         return (
             <div className={styles.contentList}>
                 <ul role="nav">
@@ -14,7 +15,7 @@ export default React.createClass({
                         this.props.itemList.map(function(item, index) {
                             return (
                                 <li key={index}>
-                                    <Link to={`${category}/${item}`}>
+                                    <Link to={`/${category}/${item}`}>
                                         <h2>{item}</h2>
                                     </Link>
                                 </li>

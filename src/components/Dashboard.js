@@ -6,15 +6,17 @@
 // TODO: separate component for contact info
 // and email form for online communication
 import React from "react";
-import { Link } from "react-router";
+import Link from "react-router/lib/Link";
 import TransitionGroup from "react/lib/ReactTransitionGroup";
 import "utils/mediaScreenResizeFix";
 
 import styles from "styles/dashboard.module.css";
 import activeLink from "styles/activeLink";
 
+// TODO: activeClassName instead of activeStyle!
 export default React.createClass({
     render: function() {
+        console.log("rendering the dashboard");
         return (
             <div className={styles.appRoot}>
                 <div id="indexNav">

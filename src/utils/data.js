@@ -124,5 +124,8 @@ exports.lookupCategory = function (category) {
 };
 
 exports.lookupItem = function (category, item) {
-    return dataMap[category].itemsMap[item];
+    if (dataMap[category])
+      return dataMap[category].itemsMap[item];
+    else
+      return undefined;
 };

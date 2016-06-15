@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router";
+import Link from "react-router/lib/Link";
 
 import styles from "styles/itemView.module.css";
 
@@ -8,6 +8,7 @@ export default React.createClass({
     render: function() {
         const item = this.props.item;
         const category = this.props.category;
+        console.log("rendering item /" + this.props.category + "/" + this.props.item.title);
         return (
             <div className={styles.item}>
                 <article>

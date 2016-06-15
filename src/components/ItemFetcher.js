@@ -9,13 +9,13 @@ import ItemView from "components/ItemView";
 export default React.createClass({
     updateItem: function (category, item) {
         this.setState({
-            "item": data.lookupItem(category, item)
+            "item": data.lookupItem(category, item) || {title: "nothing"}
         });
     },
 
     getInitialState: function() {
         return {
-            item: {}
+            item: {title: "nothing"}
         };
     },
 
@@ -28,7 +28,6 @@ export default React.createClass({
     componentWillAppear: function (cb) {
         $(document).ready(() => {
             if (window.matchMedia("(min-width: 768px)").matches) {
-                console.log("not mobile contract");
                 $("#indexNav").width("30%");
             }
             cb();
@@ -38,7 +37,6 @@ export default React.createClass({
     componentWillEnter: function(cb) {
         $(document).ready(() => {
             if (window.matchMedia("(min-width: 768px)").matches) {
-                console.log("not mobile contract");
                 $("#indexNav").animate(
                     {width: "30%"}, 400
                     );
@@ -50,7 +48,6 @@ export default React.createClass({
     componentWillLeave: function(cb) {
         $(document).ready(() => {
             if (window.matchMedia("(min-width: 768px)").matches) {
-                console.log("not mobile expand");
                 $("#indexNav").animate(
                     {width: "100%"}, 400
                     );
@@ -71,6 +68,7 @@ export default React.createClass({
     },
 
     render: function() {
+        console.log("rendering /" + this.props.params.category + "/" + this.props.params.item);
         return (
             <ItemView {...this.props.params} item={this.state.item}/>
         );
