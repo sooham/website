@@ -26,7 +26,6 @@ var devPlugin = new webpack.DefinePlugin({
 
 
 // css modules naming scheme
-// TODO: not sure if this will will work w/o es6
 var cssModulesNames = (
     isDev ? "[path][name]__[local]__" : "") + "[hash:base64:5]";
 
@@ -34,15 +33,12 @@ var config = {
     // multiple entry points
     // home -> portfolio {home,blog,projects,demos,resume}
     // admin -> editor {editor}
-    entry: {
-        home: path.join(src, "home.js"),
-        admin: path.join(src, "admin.js")
-    },
+    entry: path.join(src, "index.js"),
 
     output: {
         path: dest,
         publicPath: "/",
-        filename: "[name].bundle.js"
+        filename: "bundle.js"
     },
 
     module: {
