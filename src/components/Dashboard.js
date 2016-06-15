@@ -16,9 +16,8 @@ import activeLink from "styles/activeLink";
 // TODO: activeClassName instead of activeStyle!
 export default React.createClass({
     render: function() {
-        console.log("rendering the dashboard");
         return (
-            <div className={styles.appRoot}>
+            <div>
                 <div id="indexNav">
                     <div id={styles.siteHeader}>
                         <div>

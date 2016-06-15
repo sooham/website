@@ -7,7 +7,6 @@ export default React.createClass({
 
     render: function() {
         const category = this.props.category;
-        console.log("rendering " + category);
         return (
             <div className={styles.contentList}>
                 <ul role="nav">

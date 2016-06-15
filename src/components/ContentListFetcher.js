@@ -71,7 +71,6 @@ export default React.createClass({
     },
 
     render: function() {
-        console.log("rendering: " + this.props.params.category);
         return (
             <ContentListView {...this.props.params} itemList={this.state.items}/>
         );

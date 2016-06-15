@@ -24,9 +24,7 @@ app.get("*", function (req, res) {
         } else if (redirect) {
             res.redirect(redirect.pathname + redirect.search);
         } else if (props) {
-            console.log("matching with route: " + req.url);
             const appHtml = renderToString(<RouterContext {...props} />);
-            console.log("finished");
             res.status(200).send(renderPage(appHtml));
         } else {
             // 404

@@ -1,12 +1,6 @@
 /* The parent div containing both
  * sidebar and content lists
  */
-.appRoot {
-    position: absolute;
-    overflow: auto;
-    min-width: 100%;
-    min-height: 100%;
-}
 
 /* Styles for mobile and desktop */
 :global(#indexNav) {

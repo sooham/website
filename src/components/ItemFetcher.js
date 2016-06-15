@@ -68,7 +68,6 @@ export default React.createClass({
     },
 
     render: function() {
-        console.log("rendering /" + this.props.params.category + "/" + this.props.params.item);
         return (
             <ItemView {...this.props.params} item={this.state.item}/>
         );

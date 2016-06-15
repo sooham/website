@@ -8,7 +8,6 @@ export default React.createClass({
     render: function() {
         const item = this.props.item;
         const category = this.props.category;
-        console.log("rendering item /" + this.props.category + "/" + this.props.item.title);
         return (
             <div className={styles.item}>
                 <article>
