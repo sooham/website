@@ -67,6 +67,11 @@ var config = {
                 test: /\.css$/,
                 include: modules,
                 loader: "style!css"
+            },
+            {
+                test: /\.(png|ico|tiff|pdf)$/,
+                include: src,
+                loader: "url?limit=10000"
             }
         ]
     },
