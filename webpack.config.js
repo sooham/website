@@ -32,6 +32,22 @@ var cssModulesNames = (
 // css extraction
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+// copying files from node_modules to public/ directory
+var CopyWebpackPlugin = require("copy-webpack-plugin");
+
+// Prism.js and Katex static files are copied to styles/
+
+var copyStaticFiles = new CopyWebpackPlugin([
+    {
+        from: path.join(modules, "prismjs/themes/prism-okaidia.css"),
+        to: path.join(dest, "styles")
+    },
+    {
+        from: path.join(modules, "prismjs/prism.js"),
+        to: path.join(dest, "scripts"),
+    }
+]);
+
 var config = {
     entry: path.join(src, "index.js"),
 
@@ -86,7 +102,11 @@ var config = {
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin()
-    ]).concat([devPlugin, new ExtractTextPlugin("styles/[name].css")]),
+    ]).concat([
+        devPlugin,
+        new ExtractTextPlugin("styles/[name].css"),
+        copyStaticFiles
+    ]),
 
 
     // add .jsx extension for JSX files

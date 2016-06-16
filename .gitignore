@@ -2,7 +2,12 @@
 node_modules/
 npm-debug.log
 
-server.bundle.js
 *.map
+
+server.bundle.js
 public/bundle.js
+
 public/styles/main.css
+
+public/styles/prism*
+public/scripts/prism*

@@ -48,6 +48,7 @@ function renderPage(appHtml) {
                 <link href="
                 https://fonts.googleapis.com/css?family=Inconsolata|VT323|Lato|Ubuntu:400italic"
                 rel="stylesheet" type="text/css">
+                <link rel="stylesheet" type="text/css" href="/styles/prism-okaidia.css" />
                 <meta name="description" content="Sooham Rafiz's personal website." />
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
             </head>
@@ -56,6 +57,7 @@ function renderPage(appHtml) {
                 <div id="app">${appHtml}</div>
                 <script src="/bundle.js" type="text/javascript"></script>
                 <script src="https://use.fontawesome.com/ba2386bece.js" type="text/javascript" async></script>
+                <script src="/scripts/prism.js" type="text/javascript" async></script>
             </body>
         </html>
             `;
