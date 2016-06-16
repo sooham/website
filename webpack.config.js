@@ -103,7 +103,7 @@ var config = {
     },
 
     // generate source map for easy debugs
-    devtool: "source-map",
+    devtool: "#eval-source-map",
 
     // webpack-dev-server configuration
     devServer: {
