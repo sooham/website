@@ -2,6 +2,8 @@ import React from "react";
 
 import GoogleLogin from "react-google-login";
 
+import styles from "styles/editor.module.css";
+
 export default React.createClass({
     onSuccessfulLogin: function(googleUser) {
         // set the state for the email and other stuff
@@ -31,12 +33,16 @@ export default React.createClass({
 
         return (
             <div>
-                <GoogleLogin
-                    clientId="12583689071-krpmfbg2ct8og2v82jrecd169t8jcu16.apps.googleusercontent.com"
-                    callback={this.onSuccessfulLogin}
-                >
-                    <i className="fa fa-google fa-5x" aria-hidden="true"></i>
-                </GoogleLogin>
+                <div className={styles.loginPane}>
+                    <GoogleLogin
+                        clientId="12583689071-krpmfbg2ct8og2v82jrecd169t8jcu16.apps.googleusercontent.com"
+                        callback={this.onSuccessfulLogin}
+                        cssClass={styles.googleLoginBtn}
+                    >
+                        <i className="fa fa-google fa-5x" aria-hidden="true"></i>
+                    </GoogleLogin>
+                    <h3>Hi Sooham, Login Please.</h3>
+                </div>
                 {isLoggedIn && (
                     <div>
                         <p>Hi {name}</p>
