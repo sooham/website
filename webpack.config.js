@@ -75,7 +75,11 @@ var config = {
             {
                 test: /\.(png|ico|tiff|pdf)$/,
                 include: src,
-                loader: "url?limit=10000"
+                loader: "url?limit=12000"
+            },
+            {
+                test: /\.json$/,
+                loader: "json"
             }
         ]
     },

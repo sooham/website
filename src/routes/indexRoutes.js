@@ -9,6 +9,11 @@ import ItemFetcher from "components/ItemFetcher";
 import Root from "components/Root";
 import Editor from "components/Editor";
 
+// TODO: switch to redux later (way later)
+// TODO: code splitting in both webpack and react
+// TODO: use strict pls
+// TODO: isomorphic rendering for login and editor
+
 module.exports = (
     <Route component={Root}>
         <Route path="/editor" component={Editor}/>
