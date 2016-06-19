@@ -1,6 +1,6 @@
 import React from "react";
 
-import {Editor, EditorState} from "draft-js";
+import {Editor, EditorState, RichUtils} from "draft-js";
 
 import "modules/draft-js/dist/Draft.css";
 import styles from "styles/editor.module.css";
@@ -15,9 +15,23 @@ import styles from "styles/editor.module.css";
 // TODO: single user auth using an email check, how laughable....
 // need to find a better solution
 
+// NOTES: To self
+// RichUtils module provides Rich Text capabilities to React
 export default React.createClass({
     onChange: function(editorState) {
         this.setState({editorState});
+    },
+
+    handleKeyCommand: function(command) {
+        const newState = RichUtils.handleKeyCommand(
+            this.state.editorState,
+            command
+        );
+        if (newState) {
+            this.onChange(newState);
+            return true;
+        }
+        return false;
     },
 
     getInitialState: function() {
@@ -25,11 +39,15 @@ export default React.createClass({
             editorState: EditorState.createEmpty()
         };
     },
+
     render: function() {
-        const {editorState} = this.state;
         return (
             <div>
-                <Editor editorState={editorState} onChange={this.onChange} />
+                <Editor
+                    editorState={this.state.editorState}
+                    handleKeyCommand={this.handleKeyCommand}
+                    onChange={this.onChange}
+                />
             </div>
         );
     }
