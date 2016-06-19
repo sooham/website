@@ -7,7 +7,7 @@ import ContentListFetcher from "components/ContentListFetcher";
 import Dashboard from "components/Dashboard";
 import ItemFetcher from "components/ItemFetcher";
 import Root from "components/Root";
-import Editor from "components/Editor";
+import loginPane from "components/loginPane";
 
 // TODO: switch to redux later (way later)
 // TODO: code splitting in both webpack and react
@@ -16,7 +16,7 @@ import Editor from "components/Editor";
 
 module.exports = (
     <Route component={Root}>
-        <Route path="/editor" component={Editor}/>
+        <Route path="/editor" component={loginPane}/>
         <Route path="/" component={Dashboard}>
             <Route path=":category" component={ContentListFetcher}/>
             <Route path=":category/:item" component={ItemFetcher}/>
