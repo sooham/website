@@ -60,14 +60,6 @@ var config = {
                 )
             },
             {
-                test: /^[^\.]*\.css$/,
-                loader: ExtractTextPlugin.extract(
-                    "style",
-                    "css-loader?modules&localIdentName=" + cssModulesNames,
-                    "postcss"
-                )
-            },
-            {
                 test: /\.css$/,
                 include: modules,
                 loader: ExtractTextPlugin.extract("style", "css")
