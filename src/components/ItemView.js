@@ -12,7 +12,10 @@ export default React.createClass({
             <div className={styles.item}>
                 <article>
                     <div className={styles.backLink}>
-                        <Link to={`/${category}`}>Back</Link>
+                        <Link to={`/${category}`}>
+                            <i className="fa fa-arrow-circle-left"></i>
+                            Back
+                        </Link>
                     </div>
                     <header className={styles.itemHeader}>
                         <h2>{item.title}</h2>

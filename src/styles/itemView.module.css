@@ -15,6 +15,17 @@
     font-family: Lato;
 }
 
+.backLink a {
+    color: #6f1ca6;
+}
+
+.backLink i {
+    margin-right: 0.3em;
+
+    color: #6f1ca6;
+}
+
+
 .itemHeader h2 {
     font-family: VT323;
     border-bottom: 0.2em dotted #f2b705;
