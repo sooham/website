@@ -1,5 +1,8 @@
 import React from "react";
 
+import {Editor, EditorState} from "draft-js";
+
+import "modules/draft-js/dist/Draft.css";
 import styles from "styles/editor.module.css";
 
 // TODO: make a PROPER auth flow from Login to Editor
@@ -13,10 +16,20 @@ import styles from "styles/editor.module.css";
 // need to find a better solution
 
 export default React.createClass({
+    onChange: function(editorState) {
+        this.setState({editorState});
+    },
+
+    getInitialState: function() {
+        return {
+            editorState: EditorState.createEmpty()
+        };
+    },
     render: function() {
+        const {editorState} = this.state;
         return (
             <div>
-                <h1>Its the editor!</h1>
+                <Editor editorState={editorState} onChange={this.onChange} />
             </div>
         );
     }
