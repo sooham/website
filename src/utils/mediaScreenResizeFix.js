@@ -2,6 +2,7 @@
  * resized across two different media queries
  */
 
+// check if in client or server
 if (typeof window != "undefined") {
     window.addEventListener("resize", function() {
         var content = document.getElementById("displayContent");

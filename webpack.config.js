@@ -33,7 +33,6 @@ var cssModulesNames = (
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 // Prism.js and Katex static files are copied to styles/
-
 var config = {
     entry: path.join(src, "index.js"),
 
