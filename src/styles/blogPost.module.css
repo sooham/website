@@ -1,11 +1,11 @@
 /* mobile and desktop */
-.item {
+.blog {
     height: 100%;
     position: absolute;
 }
 
-.item article {
-    min-height: 100%;
+.blog article {
+    min-height: 97.9%;
     background: white;
 
     padding: 4%;
@@ -26,26 +26,24 @@
 }
 
 
-.itemHeader h2 {
+.blogHeader h2 {
     font-family: VT323;
     border-bottom: 0.2em dotted #f2b705;
 }
 
-.itemHeader p {
+.blogHeader p {
     font-family: Ubuntu;
     margin: 0;
 }
 
-.itemBody {
+.blogBody {
     font-family: Lato;
-
 }
 
 /* mobile only */
 @media all and (max-width: 767px) {
-    .item {
+    .blog {
         width: 100%;
-
         border-top: 2px solid black;
     }
 
@@ -54,13 +52,13 @@
         font-size: 1.5em;
     }
 
-    .itemHeader h2 {
+    .blogHeader h2 {
         margin: 0 0 0.4em 0;
 
         font-size: 2em;
     }
 
-    .itemBody {
+    .blogBody {
         margin: 2em 2% 0 2%;
         font-size: 1.1em;
     }
@@ -68,7 +66,7 @@
 
 /* desktop only */
 @media all and (min-width: 768px) {
-    .item {
+    .blog {
         width: 70%;
         max-width: 70%;
         left: 30%;
@@ -77,7 +75,7 @@
         z-index: 0;
     }
 
-    .item article {
+    .blog article {
         margin: 2.1%;
         position: relative;
         box-sizing: border-box;
@@ -89,14 +87,14 @@
         font-size: 2.7vw;
     }
 
-    .itemHeader h2 {
+    .blogHeader h2 {
         margin: 0 0 0.4em 0;
 
         font-size: 4.3vw;
     }
 
 
-    .itemBody {
+    .blogBody {
         margin: 3em 2em 0 2em;
         font-size: 2vw;
     }

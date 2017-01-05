@@ -1,30 +1,10 @@
 import React from "react";
-import data from "utils/data";
-import $ from "jquery";
 
-import ContentListView from "components/ContentListView";
+import styles from "styles/about.module.css";
 
-import styles from "styles/dashboard.module.css";
+import $ from "jquery"
 
-
-// TODO: move to containers/
-// TODO: add proptypes and default props and what not
 export default React.createClass({
-    updateItemList: function(category) {
-        const cat = data.lookupCategory(category);
-        const itemList = cat ? Object.keys(cat.itemsMap): ["nothing"];
-
-        this.setState({
-            items: itemList
-        });
-    },
-
-    getInitialState: function() {
-        return {
-            items: ["nothing"]
-        };
-    },
-
     // TODO: did a quick and dirty fix to enable animation when user
     // does not start at /, clean this up by including a state in this component
     // should these be with the parent?
@@ -62,17 +42,21 @@ export default React.createClass({
         });
     },
 
-    componentWillReceiveProps: function(nextProps) {
-        this.updateItemList(nextProps.params.category);
-    },
-
-    componentDidMount: function() {
-        this.updateItemList(this.props.params.category);
-    },
-
     render: function() {
         return (
-            <ContentListView {...this.props.params} itemList={this.state.items}/>
+            <div className={styles.about}>
+                <article>
+                    <header className={styles.aboutHeader}>
+                        <h2>About me</h2>
+                    </header>
+                    <section className={styles.aboutBody}>
+                        <img className={styles.aboutPicture} src="/styles/aboutPicture.png"/>
+                        <p>I am a third year student at the University of Toronto.</p>
+                        <p>I enjoy creating art as an outlet for creative release.</p>
+                        <p>Observing physical pheomenon is also of great interest.</p>
+                    </section>
+                </article>
+            </div>
         );
     }
 });

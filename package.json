@@ -1,4 +1,5 @@
 {
+  "_comment": "TODO: A lot of unused deps, remove them pls",
   "name": "sooham-blog",
   "version": "1.0.0",
   "description": "Sooham Rafiz's blog",
@@ -39,8 +40,9 @@
 
   "scripts": {
     "start": "if [ \"$NODE_ENV\" == \"development\" ]; then npm run start:dev;else npm run start:prod; fi;",
+    "clean": "rm -f server.bundle.js ./public/bundle.js ./public/styles/main.css",
     "start:dev": "webpack-dev-server",
-    "start:prod": "webpack --config webpack.server.config.js && node server.bundle.js",
+    "start:prod": "webpack && webpack --config webpack.server.config.js && node server.bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sooham Rafiz",

@@ -1,25 +1,15 @@
 import React from "react";
-import data from "utils/data";
+import Link from "react-router/lib/Link";
+import styles from "styles/blog.module.css";
+import blog from "utils/blog"
 import $ from "jquery";
 
-import ItemView from "components/ItemView";
 
 // TODO: move to containers/
 // TODO: add proptypes and default props and what not
+
 export default React.createClass({
-    updateItem: function (category, item) {
-        this.setState({
-            "item": data.lookupItem(category, item) || {title: "nothing"}
-        });
-    },
-
-    getInitialState: function() {
-        return {
-            item: {title: "nothing"}
-        };
-    },
-
-        // TODO: did a quick and dirty fix to enable animation when user
+    // TODO: did a quick and dirty fix to enable animation when user
     // does not start at /, clean this up by including a state in this component
     // should these be with the parent?
     // TODO: you'll need to pass a state down from parent to child,
@@ -56,20 +46,24 @@ export default React.createClass({
         });
     },
 
-
-    componentDidMount: function() {
-        const { category, item } = this.props.params;
-        this.updateItem(category, item);
-    },
-
-    componentWillReceiveProps: function(nextProps) {
-        const { category, item } = nextProps.params;
-        this.updateItem(category, item);
-    },
-
     render: function() {
+        const blogPostList = blog.blogPostList;
         return (
-            <ItemView {...this.props.params} item={this.state.item}/>
+            <div className={styles.contentList}>
+                <ul role="nav">
+                    {
+                        blogPostList.map(function(post, index) {
+                            return (
+                                <li key={index}>
+                                    <Link to={`/blog/${post.title}`}>
+                                        <h2>{post.title}</h2>
+                                    </Link>
+                                </li>
+                            );
+                        })
+                    }
+                </ul>
+            </div>
         );
     }
 });

@@ -2,14 +2,15 @@
 
 import React from "react";
 import Route from "react-router/lib/Route";
+import IndexRoute from "react-router/lib/IndexRoute";
 
-import ContentListFetcher from "components/ContentListFetcher";
 import Dashboard from "components/Dashboard";
-import ItemFetcher from "components/ItemFetcher";
 import Root from "components/Root";
 import loginPane from "components/loginPane";
+import Blog from "components/Blog"
+import BlogPost from "components/BlogPost"
+import About from "components/About"
 
-// TODO: switch to redux later (way later)
 // TODO: code splitting in both webpack and react
 // TODO: use strict pls
 // TODO: isomorphic rendering for login and editor
@@ -17,9 +18,14 @@ import loginPane from "components/loginPane";
 module.exports = (
     <Route component={Root}>
         <Route path="/editor" component={loginPane}/>
+        // TODO: make this index route
         <Route path="/" component={Dashboard}>
-            <Route path=":category" component={ContentListFetcher}/>
-            <Route path=":category/:item" component={ItemFetcher}/>
+            <Route path="blog">
+                <IndexRoute component={Blog}/>
+                <Route path=":post" component={BlogPost}/>
+            </Route>
+            <Route path="about" component={About}/>
+            // TODO: add art route
         </Route>
     </Route>
 );

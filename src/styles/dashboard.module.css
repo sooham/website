@@ -32,6 +32,11 @@
     font-family: Inconsolata;
 }
 
+.contactInfo > a {
+    display: inline-block;
+    margin: 0.8em;
+}
+
 
 
 /* mobile only */
@@ -54,12 +59,6 @@
     :global(#indexNav) nav a {
         margin: 0 3vw;
         font-size: 4vw;
-    }
-
-    .contactInfo p {
-        display: inline-block;
-        font-size: 0.9em;
-        margin: 1em;
     }
 }
 

@@ -3,8 +3,6 @@
 // TODO: autoprefixer is not working on .module.css files
 // in styles folder. fix the issue and remove all vendor prefixes
 
-// TODO: separate component for contact info
-// and email form for online communication
 import React from "react";
 import Link from "react-router/lib/Link";
 import TransitionGroup from "react/lib/ReactTransitionGroup";
@@ -14,6 +12,7 @@ import styles from "styles/dashboard.module.css";
 import activeLink from "styles/activeLink";
 
 // TODO: activeClassName instead of activeStyle!
+// TODO: need to add an art link and component to the page
 export default React.createClass({
     render: function() {
         return (
@@ -27,35 +26,35 @@ export default React.createClass({
                     </div>
                     <div>
                         <nav>
+                            <Link to="/about" activeStyle={activeLink} >
+                                About
+                            </Link>
                             <Link to="/blog" activeStyle={activeLink} >
                                 Blog
                             </Link>
-                            <Link to="/demos" activeStyle={activeLink} >
-                                Demos
-                            </Link>
-                            <Link to="/projects" activeStyle={activeLink} >
-                                Projects
-                            </Link>
-                            <Link to="/resume" activeStyle={activeLink} >
+                            <a href="/resume.pdf">
                                 Resume
-                            </Link>
+                            </a>
                         </nav>
                     </div>
                     <div >
                         <div className={styles.contactInfo}>
-                            <p>
-                                <i className={"fa fa-phone fa-fw"} aria-hidden="true"></i>
-                                <a href="tel:6478366256">  +1 (647) 836-6256</a>
-                            </p>
-                            <p>
-                                <i className={"fa fa-envelope fa-fw"} aria-hidden="true"></i>
-                                <a href="mailto:rafizsooham@gmail.com"> rafizsooham@gmail.com</a>
-                            </p>
+                                <a href="tel:6478366256">
+                                    <i className={"fa fa-phone fa-fw fa-lg"} aria-hidden="true"></i>
+                                </a>
+                                <a href="mailto:rafizsooham@gmail.com">
+                                    <i className={"fa fa-envelope fa-fw fa-lg"} aria-hidden="true"></i>
+                                </a>
+                                <a href="https://github.com/sooham">
+                                    <i className={"fa fa-github fa-fw fa-lg"} aria-hidden="true"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/sooham-rafiz">
+                                    <i className={"fa fa-linkedin-square fa-fw fa-lg"} aria-hidden="true"></i>
+                                </a>
                         </div>
                     </div>
                 </div>
                 <TransitionGroup
-                    transitionEnterTimeout={400}
                     transitionEnterTimeout={400}
                     component="div"
                     id="displayContent"
