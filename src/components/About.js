@@ -50,7 +50,7 @@ export default React.createClass({
                         <h2>About me</h2>
                     </header>
                     <section className={styles.aboutBody}>
-                        <img className={styles.aboutPicture} src="/styles/aboutPicture.png"/>
+                        <img className={styles.aboutPicture} src="/aboutPicture.png"/>
                         <p>I am a third year student at the University of Toronto.</p>
                         <p>I enjoy creating art as an outlet for creative release.</p>
                         <p>Observing physical pheomenon is also of great interest.</p>
