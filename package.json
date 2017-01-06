@@ -39,10 +39,11 @@
   },
 
   "scripts": {
+    "build": "NODE_ENV=production npm start",
     "start": "if [ \"$NODE_ENV\" == \"development\" ]; then npm run start:dev;else npm run start:prod; fi;",
     "clean": "rm -f server.bundle.js ./public/bundle.js ./public/styles/main.css",
     "start:dev": "webpack-dev-server",
-    "start:prod": "webpack && webpack --config webpack.server.config.js && node server.bundle.js",
+    "start:prod": "webpack && webpack --config webpack.server.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sooham Rafiz",
