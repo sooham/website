@@ -1,1 +1,1 @@
-web: node server.bundle.js
+web: NODE_ENV=production npm start

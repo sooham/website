@@ -53,7 +53,7 @@ export default React.createClass({
                         <img className={styles.aboutPicture} src="/aboutPicture.png"/>
                         <p>I am a third year student at the University of Toronto.</p>
                         <p>I enjoy making art.</p>
-                        <p>Observing physical pheomenon is also of great interest.</p>
+                        <p>Observing physical phenomenon is also of great interest.</p>
                     </section>
                 </article>
             </div>
