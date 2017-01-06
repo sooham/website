@@ -1,5 +1,6 @@
 // @flow
 const blogPostData = [
+                /*
                 { title: "Reflection on CIFAR10",
                   date: "2016-08-19",
                   categories: ["Computer Vision","Machine Learning"],
@@ -35,6 +36,7 @@ const blogPostData = [
                   categories: ["Math"],
                   tags: ["Fourier Transform"],
                  content: "Lorem ipsum Consequat amet culpa laboris ut et nostrud deserunt ex non laborum quis exercitation consectetur dolor esse sunt adipisicing deserunt qui sunt sed Duis exercitation dolore incididunt cupidatat laboris dolore deserunt consectetur qui do." },
+                 */
             ];
 
 exports.blogPostList = blogPostData;
