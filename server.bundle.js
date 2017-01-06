@@ -62,6 +62,11 @@
 	app.use(_express2.default.static(_path2.default.join(__dirname, "public")));
 
 	var PORT = process.env.PORT || 8080;
+
+	app.get('*', function (req, res) {
+	    res.sendFile(_path2.default.resolve(__dirname, 'public', 'index.html'));
+	});
+
 	app.listen(PORT, function () {
 	    return console.log("Express Production Server running at localhost:" + PORT);
 	});
