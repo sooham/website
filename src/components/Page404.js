@@ -1,10 +1,7 @@
 import React from "react";
-import Link from "react-router/lib/Link";
-import blog from "utils/blog";
-
 import $ from "jquery";
 
-import styles from "styles/blogPost.module.css"
+import styles from "styles/page404.module.css";
 
 export default React.createClass({
     // TODO: did a quick and dirty fix to enable animation when user
@@ -43,33 +40,7 @@ export default React.createClass({
             cb();
         });
     },
-
     render: function() {
-        const blogPostTitle = this.props.params.post;
-        const defaultPost = {
-            title: "Not Found",
-            __html: "<p>This post does not exist.</p>",
-        };
-
-        const post = blog.lookupBlogPost(blogPostTitle) || defaultPost;
-
-        return (
-            <div className={styles.blog}>
-                <article>
-                    <div className={styles.backLink}>
-                        <Link to="/blog">
-                            <i className="fa fa-arrow-circle-left"></i>
-                            Back
-                        </Link>
-                    </div>
-                    <header className={styles.blogHeader}>
-                        <h2>{post.title }</h2>
-                        <p>{(post.date || post.from) || ""}</p>
-                    </header>
-                    <section dangerouslySetInnerHTML={post} className={styles.blogBody}>
-                    </section>
-                </article>
-            </div>
-        );
+        return (<p id={styles.text404}>This page does not exist! Or does it?</p>);
     }
 });

@@ -1,0 +1,21 @@
+/* desktop and mobile */
+#text404 {
+    text-align: center;
+    font-size: 3vw;
+    margin: 22% 0 0 0;
+    color: #f2f2f2;
+    font-family: Lato;
+}
+
+/* desktop only */
+@media all and (min-width: 768px) {
+    #text404 {
+        left: 30%;
+        width: 70%;
+        position: absolute;
+    }
+}
+
+/* mobile only */
+@media all and (max-width: 767px) {
+}
