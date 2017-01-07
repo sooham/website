@@ -61,8 +61,7 @@ export default React.createClass({
                         <h2>{post.title}</h2>
                         <p>{(post.date || post.from) || ""}</p>
                     </header>
-                    <section className={styles.blogBody}>
-                        {post.content || ""}
+                    <section dangerouslySetInnerHTML={post} className={styles.blogBody}>
                     </section>
                 </article>
             </div>
